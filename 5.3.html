@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      5.3 Framework CSS: Hero Section & Landing Page Area (Bootstrap 5) - Web
+      Programming 4.0
+    </title>
+    <!-- Tailwind CSS CDN (Untuk Tampilan Aplikasi Web Learning Module Utama) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap 5 CSS CDN (Untuk Render Live Preview dalam Simulasi Browser) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Styling Kartu Portal */
+      .module-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .badge-number {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+
+      /* Editor Style Light Mode */
+      .code-window {
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #cbd5e1;
+      }
+
+      .code-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .code-tab {
+        background-color: #ffffff;
+        color: #0284c7;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem 0.375rem 0 0;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-family: "Fira Code", monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Browser Window Style Light */
+      .browser-window {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        border: 1px solid #cbd5e1;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      .browser-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .browser-dots {
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .browser-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .browser-address-bar {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen pb-16">
+    <!-- Header Portal (Tailwind UI) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarta
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 05</span>
+            <span>•</span>
+            <span>Bootstrap Framework</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            5.3 Bootstrap 5: Hero Section & Landing Page Area
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Merancang tata letak area utama landing page (Hero Section)
+            responsif menggunakan utilitas Spacing, Grid, Flexbox, dan Komponent
+            Button bawaan Bootstrap 5.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 1: Hero Section Terpusat (Bootstrap 5) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >01</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Centered Hero Section (Layout Terpusat Bootstrap 5)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          <strong>Hero Section Centered</strong> dengan kombinasi class utilitas
+          Bootstrap 5 seperti
+          <code class="code-font text-sky-600">text-center</code>,
+          <code class="code-font text-sky-600">bg-primary-subtle</code>, dan
+          <code class="code-font text-sky-600">btn</code> untuk menyampaikan
+          penawaran utama secara jelas.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Code Window -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-bootstrap text-purple-600"></i>
+                hero-centered.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-slate-400">&lt;!-- Bootstrap 5 Centered Hero Section --&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"p-5 text-center bg-primary-subtle border border-primary-subtle rounded-3"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-slate-400">&lt;!-- Badge Tagline --&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;span</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"badge bg-white text-primary border border-primary-subtle rounded-pill px-3 py-2 mb-3 shadow-sm"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;i</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"fa-solid fa-sparkles me-1 text-primary"</span><span class="text-indigo-600 font-semibold">&gt;&lt;/i&gt;</span> Solusi Digital Terbaik 2026
+  <span class="text-indigo-600 font-semibold">&lt;/span&gt;</span>
+
+  <span class="text-slate-400">&lt;!-- Main Headline --&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;h1</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"fw-bold text-dark fs-4 mb-2"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+    Tingkatkan Performa Bisnis Anda dengan Platform Terpadu
+  <span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+
+  <span class="text-slate-400">&lt;!-- Subheadline --&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;p</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-secondary fs-7 max-w-md mx-auto mb-4"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+    Kelola sistem operasional, data pelanggan, dan analisis laporan secara efisien dalam satu dasbor yang cepat dan terintegrasi.
+  <span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+
+  <span class="text-slate-400">&lt;!-- Call to Action Buttons --&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"d-flex justify-content-center gap-2"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn btn-primary btn-sm fw-semibold shadow-sm"</span><span class="text-indigo-600 font-semibold">&gt;</span>Mulai Coba Gratis<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn btn-outline-secondary btn-sm fw-semibold bg-white"</span><span class="text-indigo-600 font-semibold">&gt;</span>Pelajari Fitur<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span></code></pre>
+          </div>
+
+          <!-- Browser Window -->
+          <div
+            class="browser-window flex flex-col justify-between bg-white min-h-[380px]"
+          >
+            <div>
+              <div class="browser-header">
+                <div class="browser-dots">
+                  <span class="browser-dot bg-rose-400"></span>
+                  <span class="browser-dot bg-amber-400"></span>
+                  <span class="browser-dot bg-emerald-400"></span>
+                </div>
+                <div class="browser-address-bar">
+                  <i class="fa-solid fa-globe text-slate-400"></i>
+                  <span>http://localhost:5500/hero-centered.html</span>
+                </div>
+              </div>
+
+              <!-- Render Live Preview Bootstrap 5 -->
+              <div class="p-4 bg-slate-50">
+                <div
+                  class="p-4 text-center bg-primary-subtle border border-primary-subtle rounded-3"
+                >
+                  <span
+                    class="badge bg-white text-primary border border-primary-subtle rounded-pill px-3 py-2 mb-3 shadow-sm"
+                  >
+                    <i class="fa-solid fa-sparkles me-1 text-primary"></i>
+                    Solusi Digital Terbaik 2026
+                  </span>
+                  <h1 class="fw-bold text-dark fs-5 mb-2">
+                    Tingkatkan Performa Bisnis Anda dengan Platform Terpadu
+                  </h1>
+                  <p
+                    class="text-secondary text-xs mb-4 mx-auto"
+                    style="max-width: 28rem"
+                  >
+                    Kelola sistem operasional, data pelanggan, dan analisis
+                    laporan secara efisien dalam satu dasbor yang cepat dan
+                    terintegrasi.
+                  </p>
+                  <div class="d-flex justify-content-center gap-2">
+                    <a
+                      href="#"
+                      class="btn btn-primary btn-sm fw-semibold shadow-sm"
+                      >Mulai Coba Gratis</a
+                    >
+                    <a
+                      href="#"
+                      class="btn btn-outline-secondary btn-sm fw-semibold bg-white"
+                      >Pelajari Fitur</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Komponen Kunci
+            Bootstrap Hero Centered
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>bg-primary-subtle &amp; border-primary-subtle:</strong>
+              Memanfaatkan skema warna latar belakangg kontekstual Bootstrap 5
+              yang lembut.
+            </li>
+            <li>
+              <strong>badge &amp; rounded-pill:</strong> Membuat komponen
+              kapsul/badge informasi dengan sudut rounded sempurna khas
+              Bootstrap.
+            </li>
+            <li>
+              <strong>btn-primary &amp; btn-outline-secondary:</strong> Komponen
+              tombol standar Bootstrap 5 dengan gaya solid dan *outline*.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 2: Split Layout Hero Section Bootstrap 5 (Apparel Kaos Oversize) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >02</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Split Layout Hero Section (Apparel Kaos Oversize - Bootstrap Grid)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Layout hero dua kolom menggunakan
+          <strong>Bootstrap 5 Grid System</strong> (<code
+            class="code-font text-sky-600"
+            >row</code
+          >
+          &amp; <code class="code-font text-sky-600">col-md-6</code>) untuk
+          landing page produk <em>apparel/streetwear</em> dengan latar belakang
+          warna redup dan dimensi gambar terukur.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Code Window -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-bootstrap text-purple-600"></i>
+                hero-apparel.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-slate-400">&lt;!-- Hero Section 2 Kolom (Background Redup &amp; Tinggi Disesuaikan) --&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"px-4 py-5 bg-light-subtle border border-secondary-subtle rounded-3 min-vh-25 d-flex align-items-center"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"row align-items-center g-4 w-100 mx-0"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+    <span class="text-slate-400">&lt;!-- Kolom Kiri: Informasi Produk --&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"col-12 col-md-7"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;span</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"badge bg-dark text-white fw-bold uppercase mb-2"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+        Cotton 24s • Oversize
+      <span class="text-indigo-600 font-semibold">&lt;/span&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;h2</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"fw-bold text-dark fs-5 mb-2"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+        Kaos Oversize Streetwear Premium
+      <span class="text-indigo-600 font-semibold">&lt;/h2&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;p</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-secondary fs-7 mb-3"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+        Potongan *boxify* presisi dari bahan kain tebal, adem, dan nyaman dipakai seharian.
+      <span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"d-flex gap-2"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn btn-dark btn-sm fw-bold shadow-sm"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+          Beli Sekarang
+        <span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn btn-outline-dark btn-sm fw-semibold bg-white"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+          Katalog Warna
+        <span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+
+    <span class="text-slate-400">&lt;!-- Kolom Kanan: Foto Gambar Terkontrol --&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"col-12 col-md-5 text-center"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;img</span> 
+        <span class="text-amber-600">src</span>=<span class="text-emerald-600">"kaos.jpg"</span> 
+        <span class="text-amber-600">alt</span>=<span class="text-emerald-600">"Kaos Oversize Streetwear"</span> 
+        <span class="text-amber-600">class</span>=<span class="text-emerald-600">"img-fluid rounded-3 shadow-sm border border-secondary-subtle"</span> 
+        <span class="text-amber-600">style</span>=<span class="text-emerald-600">"max-width: 300px; object-fit: cover;"</span>
+      <span class="text-indigo-600 font-semibold">/&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span></code></pre>
+          </div>
+
+          <!-- Browser Window -->
+          <div
+            class="browser-window flex flex-col justify-between bg-white min-h-[380px]"
+          >
+            <div>
+              <div class="browser-header">
+                <div class="browser-dots">
+                  <span class="browser-dot bg-rose-400"></span>
+                  <span class="browser-dot bg-amber-400"></span>
+                  <span class="browser-dot bg-emerald-400"></span>
+                </div>
+                <div class="browser-address-bar">
+                  <i class="fa-solid fa-globe text-slate-400"></i>
+                  <span>http://localhost:5500/hero-apparel.html</span>
+                </div>
+              </div>
+
+              <!-- Live Preview Bootstrap 5 Split Layout Hero -->
+              <div class="p-4 bg-slate-50">
+                <div
+                  class="px-4 py-5 bg-light-subtle border border-secondary-subtle rounded-3 d-flex align-items-center"
+                  style="min-height: 240px"
+                >
+                  <div class="row align-items-center g-4 w-100 mx-0">
+                    <!-- Left Column -->
+                    <div class="col-12 col-md-7">
+                      <span class="badge bg-dark text-white fw-bold mb-2">
+                        Cotton 24s • Oversize
+                      </span>
+                      <h2 class="fw-bold text-dark fs-6 mb-2">
+                        Kaos Oversize Streetwear Premium
+                      </h2>
+                      <p class="text-secondary text-xs mb-3">
+                        Potongan <em>boxify</em> presisi dari bahan kain tebal,
+                        adem, dan nyaman dipakai seharian.
+                      </p>
+                      <div class="d-flex gap-2">
+                        <a
+                          href="#"
+                          class="btn btn-dark btn-sm fw-bold shadow-sm"
+                        >
+                          Beli Sekarang
+                        </a>
+                        <a
+                          href="#"
+                          class="btn btn-outline-dark btn-sm fw-semibold bg-white"
+                        >
+                          Katalog Warna
+                        </a>
+                      </div>
+                    </div>
+
+                    <!-- Right Column: Image -->
+                    <div class="col-12 col-md-5 text-center">
+                      <img
+                        src="https://images.unsplash.com/photo-1693443687750-611ad77f3aba?auto=format&fit=crop&w=600&q=80"
+                        alt="Kaos Oversize Streetwear"
+                        class="img-fluid rounded-3 shadow-sm border border-secondary-subtle"
+                        style="max-width: 180px; object-fit: cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Analisis Utilitas
+            Bootstrap Split Hero
+          </h4>
+          <p class="text-slate-600">
+            Penggunaan
+            <code class="code-font text-sky-600">bg-light-subtle</code>
+            memberikan tampilan latar belakang netral yang lebih lembut. Batasan
+            tinggi gambar melalui atribut
+            <code class="code-font text-sky-600">max-height: 160px</code> dan
+            <code class="code-font text-sky-600">object-fit: cover</code>
+            menjaga gambar tetap proporsional tanpa memakan seluruh area
+            vertikal hero section.
+          </p>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="5.2.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Modul 5.2
+        </a>
+        <a
+          href="5.4.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Modul 5.4 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </main>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

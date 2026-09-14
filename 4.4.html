@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.4 Studi Kasus JavaScript Sederhana - Web Programming 4.0</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+
+        /* Mencegah seleksi teks (Anti-Select/Copas) */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE 10+ / Edge */
+        user-select: none; /* Standard */
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Styling Kartu */
+      .module-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .badge-number {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+
+      /* Container Window Browser */
+      .browser-container {
+        border: 1.5px solid #cbd5e1;
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 12px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Header Window Browser */
+      .browser-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e2e8f0;
+        margin-bottom: 16px;
+        color: #64748b;
+      }
+
+      .browser-search {
+        border: 1px solid #cbd5e1;
+        border-radius: 20px;
+        height: 24px;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        font-size: 10px;
+        color: #64748b;
+        background-color: #f8fafc;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen pb-16">
+    <!-- Header Portal -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarta
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 04</span>
+            <span>•</span>
+            <span>JavaScript</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            4.4 Studi Kasus JavaScript: Aplikasi Kalkulator Nilai Akhir
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Panduan instruksi tugas serta contoh aplikasi perhitungan nilai
+            siswa secara real-time.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section: Studi Kasus JavaScript -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <h3 class="text-xl font-bold text-slate-800">
+            STUDI KASUS: JAVASCRIPT
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Kolom Kiri: Deskripsi & Instruksi Pengerjaan -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- Deskripsi -->
+            <div
+              class="bg-sky-50/60 border border-sky-100 rounded-xl p-4 text-xs text-sky-900 leading-relaxed"
+            >
+              <span
+                class="font-bold block mb-1 text-sky-700 uppercase tracking-wider text-[10px]"
+                >Deskripsi Tugas</span
+              >
+              Membuat aplikasi web interaktif sederhana berupa Kalkulator Nilai
+              Akhir Siswa yang menghitung nilai rata-rata dari Tugas, UTS, dan
+              UAS secara otomatis menggunakan DOM Manipulation dan Event
+              Handling JavaScript.
+            </div>
+
+            <!-- Instruksi Pengerjaan -->
+            <div class="space-y-3">
+              <h4
+                class="font-bold text-slate-800 text-sm flex items-center gap-2"
+              >
+                <i class="fa-solid fa-list-check text-indigo-600"></i> Instruksi
+                Pengerjaan:
+              </h4>
+              <p class="text-xs text-slate-600">
+                Buat halaman HTML dan script JavaScript yang memiliki fitur:
+              </p>
+
+              <ol
+                class="list-decimal list-inside text-xs text-slate-700 space-y-2 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200"
+              >
+                <li>
+                  Judul halaman menggunakan heading
+                  <code class="code-font text-indigo-600 font-semibold"
+                    >&lt;h1&gt;</code
+                  >
+                  (Kalkulator Nilai Siswa).
+                </li>
+                <li>
+                  Formulir input angka untuk:
+                  <ul
+                    class="list-disc list-inside ml-5 mt-1 space-y-0.5 text-slate-600"
+                  >
+                    <li>
+                      Nama Siswa (<code
+                        class="code-font text-indigo-600 font-semibold"
+                        >&lt;input type="text"&gt;</code
+                      >)
+                    </li>
+                    <li>
+                      Nilai Tugas (<code
+                        class="code-font text-indigo-600 font-semibold"
+                        >&lt;input type="number"&gt;</code
+                      >)
+                    </li>
+                    <li>
+                      Nilai UTS (<code
+                        class="code-font text-indigo-600 font-semibold"
+                        >&lt;input type="number"&gt;</code
+                      >)
+                    </li>
+                    <li>
+                      Nilai UAS (<code
+                        class="code-font text-indigo-600 font-semibold"
+                        >&lt;input type="number"&gt;</code
+                      >)
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Tombol aksi (<code
+                    class="code-font text-indigo-600 font-semibold"
+                    >&lt;button&gt;</code
+                  >) "Hitung Nilai".
+                </li>
+                <li>
+                  Event Listener saat tombol diklik untuk mengambil nilai input
+                  dan menghitung Rata-rata (<code
+                    class="code-font text-indigo-600 font-semibold"
+                    >(Tugas + UTS + UAS) / 3</code
+                  >).
+                </li>
+                <li>
+                  Pengkondisian (<code
+                    class="code-font text-indigo-600 font-semibold"
+                    >if / else</code
+                  >) penentu kelulusan:
+                  <ul
+                    class="list-disc list-inside ml-5 mt-1 space-y-0.5 text-slate-600"
+                  >
+                    <li>Rata-rata &ge; 75: "LULUS"</li>
+                    <li>Rata-rata &lt; 75: "REMIDI"</li>
+                  </ul>
+                </li>
+                <li>
+                  Validasi input kosong (tampilkan pesan error jika ada input
+                  tidak diisi).
+                </li>
+                <li>
+                  Tampilkan hasil kalkulasi (Nama, Rata-rata, Status Kelulusan)
+                  pada elemen HTML penampung output.
+                </li>
+              </ol>
+            </div>
+
+            <!-- Catatan Tambahan -->
+            <div
+              class="bg-amber-50 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-900 leading-relaxed"
+            >
+              <span
+                class="font-bold block mb-1 text-amber-800 flex items-center gap-1.5"
+              >
+                <i class="fa-solid fa-circle-info"></i> Catatan Pengerjaan:
+              </span>
+              <ul class="list-disc list-inside space-y-1 text-amber-800/90">
+                <li>
+                  Gunakan tag HTML dan JavaScript standar (internal script).
+                </li>
+                <li>
+                  Gunakan
+                  <code class="code-font font-semibold"
+                    >e.preventDefault()</code
+                  >
+                  jika menggunakan form agar halaman tidak reload.
+                </li>
+                <li>
+                  Tidak harus sama persis dengan contoh, yang penting alur
+                  logika JavaScript berfungsi dengan baik.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Tampilan Web Asli (Live Preview) -->
+          <div class="lg:col-span-5 space-y-3">
+            <h4
+              class="font-bold text-slate-800 text-sm flex items-center gap-2"
+            >
+              <i class="fa-solid fa-desktop text-sky-600"></i> Contoh Tampilan
+              Web Asli
+            </h4>
+
+            <!-- Frame Browser -->
+            <div class="browser-container max-w-[400px] mx-auto">
+              <!-- Header Browser -->
+              <div class="browser-header">
+                <div class="flex items-center gap-1.5">
+                  <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                </div>
+                <div class="browser-search">
+                  <i
+                    class="fa-solid fa-lock text-[9px] mr-1.5 text-slate-400"
+                  ></i>
+                  localhost/kalkulator-nilai
+                </div>
+              </div>
+
+              <!-- Aplikasi Kalkulator Nilai (Live UI) -->
+              <div class="bg-white p-2">
+                <div class="text-center mb-4">
+                  <h1 class="text-lg font-bold text-slate-800">
+                    Kalkulator Nilai Siswa
+                  </h1>
+                  <p class="text-[11px] text-slate-500">
+                    Isi form di bawah untuk menghitung nilai akhir
+                  </p>
+                </div>
+
+                <form
+                  id="calcForm"
+                  onsubmit="hitungNilai(event)"
+                  class="space-y-3"
+                >
+                  <div>
+                    <label class="block text-xs font-medium text-slate-700 mb-1"
+                      >Nama Siswa</label
+                    >
+                    <input
+                      type="text"
+                      id="namaInput"
+                      placeholder="Masukkan nama"
+                      class="w-full px-3 py-1.5 text-xs rounded-md border border-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                    />
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-2">
+                    <div>
+                      <label
+                        class="block text-[11px] font-medium text-slate-700 mb-1"
+                        >Tugas</label
+                      >
+                      <input
+                        type="number"
+                        id="tugasInput"
+                        placeholder="0-100"
+                        class="w-full px-2 py-1.5 text-xs rounded-md border border-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-[11px] font-medium text-slate-700 mb-1"
+                        >UTS</label
+                      >
+                      <input
+                        type="number"
+                        id="utsInput"
+                        placeholder="0-100"
+                        class="w-full px-2 py-1.5 text-xs rounded-md border border-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-[11px] font-medium text-slate-700 mb-1"
+                        >UAS</label
+                      >
+                      <input
+                        type="number"
+                        id="uasInput"
+                        placeholder="0-100"
+                        class="w-full px-2 py-1.5 text-xs rounded-md border border-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-md text-xs shadow-sm transition mt-1"
+                  >
+                    Hitung Nilai
+                  </button>
+                </form>
+
+                <!-- Pesan Error Validasi -->
+                <div
+                  id="errorMessage"
+                  class="hidden mt-3 p-2 bg-rose-50 border border-rose-200 text-rose-600 rounded text-[11px] text-center font-medium"
+                >
+                  Harap isi semua kolom nama dan nilai!
+                </div>
+
+                <!-- Hasil Kalkulasi -->
+                <div
+                  id="resultBox"
+                  class="hidden mt-4 pt-3 border-t border-slate-200 space-y-2"
+                >
+                  <div
+                    class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 text-xs space-y-1"
+                  >
+                    <div class="flex justify-between">
+                      <span class="text-slate-500">Nama:</span>
+                      <span id="outputNama" class="font-semibold text-slate-800"
+                        >-</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-slate-500">Rata-rata:</span>
+                      <span id="outputRata" class="font-bold text-indigo-600"
+                        >-</span
+                      >
+                    </div>
+                  </div>
+
+                  <div
+                    id="statusBadge"
+                    class="p-2 rounded-lg text-center text-xs font-bold"
+                  >
+                    -
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="4.3.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Modul 4.3
+        </a>
+        <a
+          href="index.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Selesai <i class="fa-solid fa-check"></i>
+        </a>
+      </div>
+    </main>
+
+    <!-- Interactive JavaScript Logic -->
+    <script>
+      function hitungNilai(event) {
+        event.preventDefault();
+
+        const nama = document.getElementById("namaInput").value.trim();
+        const tugas = parseFloat(document.getElementById("tugasInput").value);
+        const uts = parseFloat(document.getElementById("utsInput").value);
+        const uas = parseFloat(document.getElementById("uasInput").value);
+
+        const errorMsg = document.getElementById("errorMessage");
+        const resultBox = document.getElementById("resultBox");
+
+        // Validasi input
+        if (!nama || isNaN(tugas) || isNaN(uts) || isNaN(uas)) {
+          errorMsg.classList.remove("hidden");
+          resultBox.classList.add("hidden");
+          return;
+        }
+
+        errorMsg.classList.add("hidden");
+
+        // Perhitungan Rata-rata
+        const rataRata = (tugas + uts + uas) / 3;
+
+        // Output data
+        document.getElementById("outputNama").textContent = nama;
+        document.getElementById("outputRata").textContent = rataRata.toFixed(2);
+
+        // Pengkondisian status kelulusan
+        const statusBadge = document.getElementById("statusBadge");
+        if (rataRata >= 75) {
+          statusBadge.textContent = "STATUS: LULUS";
+          statusBadge.className =
+            "p-2 rounded-lg text-center text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-300";
+        } else {
+          statusBadge.textContent = "STATUS: REMIDI";
+          statusBadge.className =
+            "p-2 rounded-lg text-center text-xs font-bold bg-rose-100 text-rose-700 border border-rose-300";
+        }
+
+        resultBox.classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>

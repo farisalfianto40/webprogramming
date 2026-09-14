@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      2.3 Semantic & Structure HTML & Div/Class/ID - Web Programming 4.0
+    </title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+
+        /* Mencegah seleksi teks (Anti-Select/Copas) */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE 10+ / Edge */
+        user-select: none; /* Standard */
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Styling Kartu */
+      .module-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .badge-number {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+
+      /* Editor Style Light Mode */
+      .code-window {
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #cbd5e1;
+      }
+
+      .code-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .code-tab {
+        background-color: #ffffff;
+        color: #0284c7;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem 0.375rem 0 0;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-family: "Fira Code", monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Browser Window Style Light */
+      .browser-window {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        border: 1px solid #cbd5e1;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      .browser-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .browser-dots {
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .browser-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .browser-address-bar {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen pb-16">
+    <!-- Header Portal -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarata
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 02</span>
+            <span>•</span>
+            <span>HTML</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            2.3 Semantic HTML & Pengelompokan Elemen
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Penyusunan tata letak halaman web yang terstruktur menggunakan tag
+            semantik serta pengelompokan elemen dengan Div, Class, dan ID.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 1: HTML Semantik Utama -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >01</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Struktur Halaman Semantik (&lt;header&gt;, &lt;nav&gt;,
+            &lt;main&gt;, &lt;footer&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Penggunaan tag semantik memberikan makna yang jelas pada struktur web
+          sehingga mempermudah pembacaan oleh mesin pencari (SEO) dan *browser*.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> semantic.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-indigo-600 font-semibold">&lt;header&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;h1&gt;</span>Portal Belajar<span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/header&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;nav&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span><span class="text-indigo-600 font-semibold">&gt;</span>Beranda<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span> | <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span><span class="text-indigo-600 font-semibold">&gt;</span>Materi<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/nav&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;main&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;h2&gt;</span>Selamat Datang<span class="text-indigo-600 font-semibold">&lt;/h2&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Ini adalah konten utama halaman.<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/main&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;footer&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>&amp;copy; 2026 SMK SMTI Yogyakarta<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/footer&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/semantic.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-between text-slate-800 text-sm space-y-4"
+            >
+              <div class="border-b border-slate-200 pb-2">
+                <h1 class="text-lg font-bold text-slate-900">Portal Belajar</h1>
+              </div>
+              <div class="text-xs text-sky-600 font-semibold space-x-2">
+                <a href="#" class="hover:underline">Beranda</a>
+                <span class="text-slate-300">|</span>
+                <a href="#" class="hover:underline">Materi</a>
+              </div>
+              <div
+                class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex-grow"
+              >
+                <h2 class="font-bold text-slate-800 mb-1">Selamat Datang</h2>
+                <p class="text-xs text-slate-600">
+                  Ini adalah konten utama halaman.
+                </p>
+              </div>
+              <div
+                class="border-t border-slate-200 pt-2 text-center text-xs text-slate-500"
+              >
+                <p>&copy; 2026 SMK SMTI Yogyakarta</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Tag Semantik -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan Tag
+            Semantik Utama
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>&lt;header&gt;:</strong> Menyimpan area kepala halaman
+              seperti judul situs, logo, atau banner utama.
+            </li>
+            <li>
+              <strong>&lt;nav&gt;:</strong> Wadah khusus yang berisi kumpulan
+              menu navigasi atau tautan antarhalaman.
+            </li>
+            <li>
+              <strong>&lt;main&gt;:</strong> Menyimpan seluruh konten paling
+              penting dan unik dari sebuah halaman web.
+            </li>
+            <li>
+              <strong>&lt;footer&gt;:</strong> Area kaki halaman yang berisi
+              informasi hak cipta, kontak, atau tautan tambahan.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 2: Elemen Generik Div & Span -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >02</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Pengelompokan Elemen (&lt;div&gt; & &lt;span&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          <code class="code-font">&lt;div&gt;</code> digunakan untuk
+          mengelompokkan elemen *block*, sedangkan
+          <code class="code-font">&lt;span&gt;</code> digunakan untuk bagian
+          teks secara *inline*.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i>
+                container.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-indigo-600 font-semibold">&lt;div&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;h3&gt;</span>Pengumuman<span class="text-indigo-600 font-semibold">&lt;/h3&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Status sistem: <span class="text-indigo-600 font-semibold">&lt;span&gt;</span>Aktif<span class="text-indigo-600 font-semibold">&lt;/span&gt;&lt;/p&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/container.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-center text-slate-800 text-sm"
+            >
+              <div class="p-4 border border-slate-300 rounded-lg bg-slate-50">
+                <h3 class="font-bold text-slate-800 text-base mb-1">
+                  Pengumuman
+                </h3>
+                <p class="text-xs text-slate-600">
+                  Status sistem:
+                  <span
+                    class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-semibold"
+                    >Aktif</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Div dan Span -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan
+            Pengelompokan Elemen
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>&lt;div&gt;:</strong> Elemen *block-level* tanpa makna
+              khusus yang berfungsi sebagai kontainer/wadah pembungkus komponen.
+            </li>
+            <li>
+              <strong>&lt;span&gt;:</strong> Elemen *inline* yang digunakan
+              untuk menyeleksi atau memberi gaya pada bagian kata/teks tertentu.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 3: Atribut Class & ID -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >03</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Atribut Identifikasi (Class & ID)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Atribut <code class="code-font">class</code> digunakan untuk penamaan
+          elemen secara berulang, sedangkan
+          <code class="code-font">id</code> bersifat unik khusus untuk satu
+          elemen saja.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> class-id.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"header-utama"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;h2</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"judul"</span><span class="text-indigo-600 font-semibold">&gt;</span>Modul Pembelajaran<span class="text-indigo-600 font-semibold">&lt;/h2&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"kartu"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Materi HTML 5<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"kartu"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Materi CSS 3<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/class-id.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow space-y-3 text-slate-800 text-sm"
+            >
+              <div id="header-utama" class="border-b border-indigo-200 pb-2">
+                <h2 class="judul font-extrabold text-indigo-700 text-base">
+                  Modul Pembelajaran
+                </h2>
+              </div>
+              <div
+                class="kartu p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-700"
+              >
+                Materi HTML 5
+              </div>
+              <div
+                class="kartu p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-700"
+              >
+                Materi CSS 3
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Class dan ID -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Perbedaan Class
+            dan ID
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>class:</strong> Penanda kelompok yang dapat dipakai
+              berulang kali pada banyak elemen berbeda sekaligus.
+            </li>
+            <li>
+              <strong>id:</strong> Pengenal unik tunggal yang hanya boleh
+              digunakan oleh satu elemen saja dalam satu halaman HTML.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="2.2.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Modul 2.2
+        </a>
+        <a
+          href="2.4.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Modul 2.4 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

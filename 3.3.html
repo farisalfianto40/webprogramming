@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.3 Responsive Design & Media Query - Web Programming 4.0</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+
+        /* Mencegah seleksi teks (Anti-Select/Copas) */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE 10+ / Edge */
+        user-select: none; /* Standard */
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Styling Kartu */
+      .module-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .badge-number {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+
+      /* Editor Style Light Mode */
+      .code-window {
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #cbd5e1;
+      }
+
+      .code-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .code-tab {
+        background-color: #ffffff;
+        color: #0284c7;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem 0.375rem 0 0;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-family: "Fira Code", monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Browser Window Style Light */
+      .browser-window {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        border: 1px solid #cbd5e1;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      .browser-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .browser-dots {
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .browser-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .browser-address-bar {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen pb-16">
+    <!-- Header Portal -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarta
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 03</span>
+            <span>•</span>
+            <span>CSS Desain Web</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            3.3 Responsive Design & Media Query
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Teknik merancang tampilan web agar adaptif dan nyaman diakses
+            melalui berbagai ukuran layar perangkat.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 1: Viewport Meta Tag & Fluid Layout -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >01</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Viewport Meta Tag & Fluid Layout
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Pondasi utama web responsif dengan mengatur skala viewport mobile dan
+          unit fleksibel seperti persentase.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Program HTML -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> viewport.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 h-56"
+            ><code><span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">name</span>=<span class="text-emerald-600">"viewport"</span> <span class="text-amber-600">content</span>=<span class="text-emerald-600">"width=device-width, initial-scale=1.0"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"fluid-box"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  Elemen Fleksibel (Width %)
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span></code></pre>
+          </div>
+
+          <!-- Program CSS -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-css3-alt text-blue-500"></i> style.css
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 h-56"
+            ><code><span class="text-indigo-600 font-semibold">.fluid-box</span> {
+  <span class="text-amber-600">width</span>: <span class="text-emerald-600">100%</span>;
+  <span class="text-amber-600">max-width</span>: <span class="text-emerald-600">600px</span>;
+  <span class="text-amber-600">padding</span>: <span class="text-emerald-600">16px</span>;
+  <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#e0f2fe</span>;
+}</code></pre>
+          </div>
+
+          <!-- Tampilan Hasil Web -->
+          <div class="browser-window flex flex-col h-64 lg:h-auto">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>Hasil Tampilan Web</span>
+              </div>
+            </div>
+            <div
+              class="p-4 bg-white flex-grow flex items-center justify-center text-slate-800 text-sm"
+            >
+              <div
+                class="w-full max-w-[260px] p-4 bg-sky-100 text-sky-800 rounded-lg border border-sky-300 text-center font-semibold text-xs shadow-2xs"
+              >
+                Elemen Fleksibel (Width 100%)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Viewport -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Konsep Dasar Web
+            Responsif
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>Viewport Meta Tag:</strong> Mencegah layar perangkat
+              seluler merender halaman dalam ukuran standar komputer secara
+              otomatis.
+            </li>
+            <li>
+              <strong>Unit Persentase (%):</strong> Mengatur ukuran elemen
+              secara dinamis mengikuti lebar wadah (*container*).
+            </li>
+            <li>
+              <strong>max-width:</strong> Membatasi lebar maksimum elemen agar
+              tidak merenggang berlebihan pada layar lebar.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 2: CSS Media Query -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >02</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            CSS Media Query (@media)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Penggunaan aturan
+          <code class="code-font text-sky-600">@media</code> untuk mengubah gaya
+          CSS secara otomatis ketika lebar layar memenuhi kondisi (*breakpoint*)
+          tertentu.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Program HTML -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> media.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 h-56"
+            ><code><span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"kotak-responsif"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  Kondisi Layar
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span></code></pre>
+          </div>
+
+          <!-- Program CSS -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-css3-alt text-blue-500"></i> style.css
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 h-56"
+            ><code><span class="text-indigo-600 font-semibold">.kotak-responsif</span> {
+  <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#fef3c7</span>;
+}
+
+<span class="text-indigo-600 font-semibold">@media</span> (<span class="text-amber-600">min-width</span>: <span class="text-emerald-600">768px</span>) {
+  <span class="text-indigo-600 font-semibold">.kotak-responsif</span> {
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#dcfce7</span>;
+  }
+}</code></pre>
+          </div>
+
+          <!-- Tampilan Hasil Web -->
+          <div class="browser-window flex flex-col h-64 lg:h-auto">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>Hasil Tampilan Web</span>
+              </div>
+            </div>
+            <div
+              class="p-4 bg-white flex-grow flex flex-col items-center justify-center gap-3 text-slate-800 text-xs"
+            >
+              <div
+                class="w-full bg-emerald-100 border border-emerald-300 text-emerald-800 p-3 rounded-md text-center font-bold"
+              >
+                Desktop (≥ 768px): Hijau
+              </div>
+              <div
+                class="w-3/4 bg-amber-100 border border-amber-300 text-amber-800 p-3 rounded-md text-center font-bold"
+              >
+                Mobile (&lt; 768px): Kuning
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Media Query -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Prinsip Kerja
+            Media Query
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>min-width:</strong> Menerapkan aturan CSS jika lebar
+              viewport melebihi atau sama dengan batas piksel yang ditentukan.
+            </li>
+            <li>
+              <strong>max-width:</strong> Menerapkan aturan CSS hanya ketika
+              lebar viewport kurang dari batas piksel tertentu.
+            </li>
+            <li>
+              <strong>Breakpoint Populer:</strong>
+              <code class="code-font text-sky-600">576px</code> (HP),
+              <code class="code-font text-sky-600">768px</code> (Tablet), dan
+              <code class="code-font text-sky-600">1024px</code>
+              (Desktop/Laptop).
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 3: Mobile-First vs Desktop-First Approach -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >03</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Strategi Mobile-First Approach
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Pendekatan modern dengan mendesain tampilan default untuk layar
+          smartphone terlebih dahulu, kemudian menambahkan gaya untuk layar yang
+          lebih lebar.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Program HTML -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i>
+                mobile-first.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 h-56"
+            ><code><span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"grid-layout"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"item"</span><span class="text-indigo-600 font-semibold">&gt;</span>1<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"item"</span><span class="text-indigo-600 font-semibold">&gt;</span>2<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span></code></pre>
+          </div>
+
+          <!-- Program CSS -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-css3-alt text-blue-500"></i> style.css
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 h-56"
+            ><code><span class="text-slate-400">/* Default Mobile: 1 Kolom */</span>
+<span class="text-indigo-600 font-semibold">.grid-layout</span> {
+  <span class="text-amber-600">display</span>: <span class="text-emerald-600">grid</span>;
+  <span class="text-amber-600">grid-template-columns</span>: <span class="text-emerald-600">1fr</span>;
+}
+
+<span class="text-slate-400">/* Laptop/Desktop */</span>
+<span class="text-indigo-600 font-semibold">@media</span> (<span class="text-amber-600">min-width</span>: <span class="text-emerald-600">768px</span>) {
+  <span class="text-indigo-600 font-semibold">.grid-layout</span> {
+    <span class="text-amber-600">grid-template-columns</span>: <span class="text-emerald-600">1fr 1fr</span>;
+  }
+}</code></pre>
+          </div>
+
+          <!-- Tampilan Hasil Web -->
+          <div class="browser-window flex flex-col h-64 lg:h-auto">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>Hasil Tampilan Web</span>
+              </div>
+            </div>
+            <div
+              class="p-4 bg-white flex-grow flex items-center justify-center text-xs"
+            >
+              <div
+                class="w-full grid grid-cols-2 gap-2 p-3 bg-slate-100 rounded-lg border border-slate-200"
+              >
+                <div
+                  class="p-3 bg-indigo-100 text-indigo-700 font-bold text-center rounded border border-indigo-200"
+                >
+                  Kolom 1
+                </div>
+                <div
+                  class="p-3 bg-indigo-100 text-indigo-700 font-bold text-center rounded border border-indigo-200"
+                >
+                  Kolom 2
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Mobile-First -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Keunggulan
+            Mobile-First
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>Performa Lebih Cepat:</strong> Perangkat seluler hanya
+              memuat kode standar tanpa memproses CSS desktop yang berat.
+            </li>
+            <li>
+              <strong>Kode Lebih Rapi:</strong> Menggunakan query
+              <code class="code-font text-sky-600">min-width</code> membuat
+              struktur gaya bertambah secara bertahap (skalabel).
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 4: Studi Kasus Interaktif (Navbar Responsif) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >04</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Studi Kasus: Layout Navigation Bar Responsif
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Penerapan Media Query untuk menyusun menu navigasi horizontal pada
+          desktop dan berubah menjadi menu tumpuk/tombol burger pada perangkat
+          seluler.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Program HTML -->
+          <div class="code-window flex flex-col">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> navbar.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 flex-grow"
+            ><code><span class="text-indigo-600 font-semibold">&lt;nav</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"navbar"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"logo"</span><span class="text-indigo-600 font-semibold">&gt;</span>SMTI<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"menu"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span><span class="text-indigo-600 font-semibold">&gt;</span>Beranda<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span><span class="text-indigo-600 font-semibold">&gt;</span>Materi<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"#"</span><span class="text-indigo-600 font-semibold">&gt;</span>Kontak<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/nav&gt;</span></code></pre>
+          </div>
+
+          <!-- Program CSS -->
+          <div class="code-window flex flex-col">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-css3-alt text-blue-500"></i> style.css
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 flex-grow"
+            ><code><span class="text-indigo-600 font-semibold">.navbar</span> {
+  <span class="text-amber-600">display</span>: <span class="text-emerald-600">flex</span>;
+  <span class="text-amber-600">flex-direction</span>: <span class="text-emerald-600">column</span>;
+  <span class="text-amber-600">gap</span>: <span class="text-emerald-600">10px</span>;
+}
+
+<span class="text-indigo-600 font-semibold">@media</span> (<span class="text-amber-600">min-width</span>: <span class="text-emerald-600">640px</span>) {
+  <span class="text-indigo-600 font-semibold">.navbar</span> {
+    <span class="text-amber-600">flex-direction</span>: <span class="text-emerald-600">row</span>;
+    <span class="text-amber-600">justify-content</span>: <span class="text-emerald-600">space-between</span>;
+    <span class="text-amber-600">align-items</span>: <span class="text-emerald-600">center</span>;
+  }
+}</code></pre>
+          </div>
+
+          <!-- Tampilan Hasil Web -->
+          <div class="browser-window flex flex-col h-full">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>Hasil Tampilan Web</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-slate-50 flex-grow flex flex-col justify-center gap-4"
+            >
+              <!-- REAL CARD RESULT -->
+              <div
+                class="w-full p-3 bg-white border border-slate-300 rounded-xl shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs"
+              >
+                <div
+                  class="font-bold text-indigo-600 flex justify-between items-center"
+                >
+                  <span>SMTI LOGO</span>
+                  <i class="fa-solid fa-bars text-slate-500 sm:hidden"></i>
+                </div>
+                <div
+                  class="flex flex-col sm:flex-row gap-2 sm:gap-4 text-slate-600 border-t sm:border-t-0 pt-2 sm:pt-0 border-slate-100"
+                >
+                  <span class="font-semibold text-indigo-600">Beranda</span>
+                  <span>Materi</span>
+                  <span>Kontak</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Studi Kasus -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Pembahasan Studi
+            Kasus
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>Arah Flexbox Dinamis:</strong> Properti
+              <code class="code-font text-sky-600">flex-direction</code> diubah
+              dari <code class="code-font text-sky-600">column</code> (Mobile)
+              menjadi <code class="code-font text-sky-600">row</code> (Desktop)
+              secara otomatis saat lebar layar melampaui
+              <code class="code-font text-sky-600">640px</code>.
+            </li>
+            <li>
+              <strong>Efisiensi Ruang Layar:</strong> Elemen navigasi menyatu ke
+              samping pada layar komputer dan menumpuk rapi pada layar
+              smartphone agar mudah disentuh.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="3.2.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Modul 3.2
+        </a>
+        <a
+          href="3.4.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Modul 3.4 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

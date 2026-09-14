@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      5.5 Framework CSS: Landing Page Company Profile (Bootstrap 5) - Web
+      Programming 4.0
+    </title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Editor Style Light Mode */
+      .code-window {
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #cbd5e1;
+      }
+
+      .code-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .code-tab {
+        background-color: #ffffff;
+        color: #0d6efd;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem 0.375rem 0 0;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-family: "Fira Code", monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Browser Window Style Light */
+      .browser-window {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        border: 1px solid #cbd5e1;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      .browser-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .browser-dots {
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .browser-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .browser-address-bar {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .fs-7 {
+        font-size: 0.85rem;
+      }
+
+      .fs-8 {
+        font-size: 0.75rem;
+      }
+
+      .fs-9 {
+        font-size: 0.68rem;
+      }
+
+      /* Custom Theme Colors */
+      .bg-hero-custom {
+        background-color: #2d2b7a !important;
+      }
+
+      .bg-badge-custom {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+      }
+
+      .btn-cyan-custom {
+        background-color: #00aeef !important;
+        border-color: #00aeef !important;
+        color: #ffffff !important;
+      }
+
+      .btn-cyan-custom:hover {
+        background-color: #0093ca !important;
+        color: #ffffff !important;
+      }
+
+      .btn-outline-purple-custom {
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .btn-outline-purple-custom:hover {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+      }
+    </style>
+  </head>
+  <body class="min-vh-100 pb-5">
+    <!-- Header Portal -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarta
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 05</span>
+            <span>•</span>
+            <span>Framework CSS</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            5.4 Studi Kasus: Company Profile
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Penerapan Komponen Utama Landing Page: Navbar, Hero Banner, Tentang
+            Perusahaan, dan Grid 3 Kolom.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 1: Integrasi Landing Page Bootstrap 5 -->
+      <section class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <span
+            class="bg-primary-subtle text-primary fw-bold rounded-3 d-flex align-items-center justify-content-center fs-7"
+            style="width: 36px; height: 36px"
+            >01</span
+          >
+          <h3 class="fw-bold text-dark mb-0 fs-5">
+            Struktur Lengkap Landing Page Company Profile (Bootstrap 5)
+          </h3>
+        </div>
+        <p class="text-secondary fs-7 mb-4">
+          Kode di bawah menyusun navigasi bersih tanpa tombol kontak, hero
+          section, seksi tentang perusahaan, serta 3 kolom kartu layanan.
+        </p>
+
+        <!-- Container Atas-Bawah (Gunakan g-4 untuk jarak vertikal) -->
+        <div class="row g-4">
+          <!-- 1. Code Window (Atas) -->
+          <div class="col-12">
+            <div class="code-window">
+              <div class="code-header">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="browser-dot bg-danger d-inline-block"></span>
+                  <span class="browser-dot bg-warning d-inline-block"></span>
+                  <span class="browser-dot bg-success d-inline-block"></span>
+                </div>
+                <div class="code-tab">
+                  <i class="fa-brands fa-bootstrap text-primary"></i>
+                  company.html
+                </div>
+              </div>
+              <pre
+                class="p-3 fs-8 code-font text-dark leading-relaxed overflow-x-auto bg-light m-0"
+              ><code><span class="text-secondary">&lt;!-- 1. NAVBAR BOOTSTRAP 5 --&gt;</span>
+<span class="text-primary fw-semibold">&lt;nav</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"navbar navbar-expand-lg bg-white border-bottom py-3"</span><span class="text-primary fw-semibold">&gt;</span>
+  <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"container"</span><span class="text-primary fw-semibold">&gt;</span>
+    <span class="text-primary fw-semibold">&lt;a</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"navbar-brand fw-bold text-primary d-flex align-items-center gap-2"</span> <span class="text-warning-emphasis">href</span>=<span class="text-success">"#"</span><span class="text-primary fw-semibold">&gt;</span>
+      <span class="text-primary fw-semibold">&lt;i</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"fa-solid fa-cube"</span><span class="text-primary fw-semibold">&gt;&lt;/i&gt;</span> TechNusa
+    <span class="text-primary fw-semibold">&lt;/a&gt;</span>
+    <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"collapse navbar-collapse"</span><span class="text-primary fw-semibold">&gt;</span>
+      <span class="text-primary fw-semibold">&lt;ul</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"navbar-nav mx-auto mb-2 mb-lg-0 fw-medium text-secondary fs-7"</span><span class="text-primary fw-semibold">&gt;</span>
+        <span class="text-primary fw-semibold">&lt;li</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"nav-item px-2"</span><span class="text-primary fw-semibold">&gt;&lt;a</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"nav-link text-dark fw-semibold"</span> <span class="text-warning-emphasis">href</span>=<span class="text-success">"#"</span><span class="text-primary fw-semibold">&gt;</span>Beranda<span class="text-primary fw-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="text-primary fw-semibold">&lt;li</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"nav-item px-2"</span><span class="text-primary fw-semibold">&gt;&lt;a</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"nav-link"</span> <span class="text-warning-emphasis">href</span>=<span class="text-success">"#"</span><span class="text-primary fw-semibold">&gt;</span>Tentang<span class="text-primary fw-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="text-primary fw-semibold">&lt;li</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"nav-item px-2"</span><span class="text-primary fw-semibold">&gt;&lt;a</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"nav-link"</span> <span class="text-warning-emphasis">href</span>=<span class="text-success">"#"</span><span class="text-primary fw-semibold">&gt;</span>Layanan<span class="text-primary fw-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="text-primary fw-semibold">&lt;/ul&gt;</span>
+    <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+  <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+<span class="text-primary fw-semibold">&lt;/nav&gt;</span>
+
+<span class="text-secondary">&lt;!-- 2. HERO SECTION --&gt;</span>
+<span class="text-primary fw-semibold">&lt;section</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"py-5 text-white text-center"</span> <span class="text-warning-emphasis">style</span>=<span class="text-success">"background-color: #2d2b7a;"</span><span class="text-primary fw-semibold">&gt;</span>
+  <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"container py-4"</span><span class="text-primary fw-semibold">&gt;</span>
+    <span class="text-primary fw-semibold">&lt;span</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-2 text-uppercase tracking-wider fs-8 mb-3"</span><span class="text-primary fw-semibold">&gt;</span>
+      Digital Agency
+    <span class="text-primary fw-semibold">&lt;/span&gt;</span>
+    <span class="text-primary fw-semibold">&lt;h1</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"fw-bold fs-2 mb-3"</span><span class="text-primary fw-semibold">&gt;</span>Solusi Digital & Otomasi Industri<span class="text-primary fw-semibold">&lt;/h1&gt;</span>
+    <span class="text-primary fw-semibold">&lt;p</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"text-white-50 fs-7 mb-4 mx-auto"</span> <span class="text-warning-emphasis">style</span>=<span class="text-success">"max-width: 550px;"</span><span class="text-primary fw-semibold">&gt;</span>
+      Membangun sistem web, aplikasi terintegrasi, dan teknologi IoT modern untuk percepatan bisnis Anda.
+    <span class="text-primary fw-semibold">&lt;/p&gt;</span>
+    <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"d-flex justify-content-center gap-2"</span><span class="text-primary fw-semibold">&gt;</span>
+      <span class="text-primary fw-semibold">&lt;a</span> <span class="text-warning-emphasis">href</span>=<span class="text-success">"#"</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"btn btn-info text-white fw-semibold px-4"</span><span class="text-primary fw-semibold">&gt;</span>Mulai Konsultasi<span class="text-primary fw-semibold">&lt;/a&gt;</span>
+      <span class="text-primary fw-semibold">&lt;a</span> <span class="text-warning-emphasis">href</span>=<span class="text-success">"#"</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"btn btn-outline-light fw-semibold px-4"</span><span class="text-primary fw-semibold">&gt;</span>Lihat Portfolio<span class="text-primary fw-semibold">&lt;/a&gt;</span>
+    <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+  <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+<span class="text-primary fw-semibold">&lt;/section&gt;</span>
+
+<span class="text-secondary">&lt;!-- 3. TENTANG PERUSAHAAN --&gt;</span>
+<span class="text-primary fw-semibold">&lt;section</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"py-5 bg-white text-center"</span><span class="text-primary fw-semibold">&gt;</span>
+  <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"container"</span><span class="text-primary fw-semibold">&gt;</span>
+    <span class="text-primary fw-semibold">&lt;span</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"text-primary fw-bold text-uppercase fs-8 tracking-wider mb-2 d-block"</span><span class="text-primary fw-semibold">&gt;</span>
+      Tentang Perusahaan
+    <span class="text-primary fw-semibold">&lt;/span&gt;</span>
+    <span class="text-primary fw-semibold">&lt;h2</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"fw-bold fs-4 text-dark mb-3"</span><span class="text-primary fw-semibold">&gt;</span>Mendorong Transformasi Teknologi Terdepan<span class="text-primary fw-semibold">&lt;/h2&gt;</span>
+    <span class="text-primary fw-semibold">&lt;p</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"text-secondary fs-7 mx-auto mb-0"</span> <span class="text-warning-emphasis">style</span>=<span class="text-success">"max-width: 700px;"</span><span class="text-primary fw-semibold">&gt;</span>
+      TechNusa adalah penyedia layanan rekayasa perangkat lunak dan integrasi sistem. Kami berfokus menyajikan antarmuka pengguna yang cepat, responsif, dan mudah digunakan untuk berbagai skala industri.
+    <span class="text-primary fw-semibold">&lt;/p&gt;</span>
+  <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+<span class="text-primary fw-semibold">&lt;/section&gt;</span>
+
+<span class="text-secondary">&lt;!-- 4. LAYANAN (CARDS GRID) --&gt;</span>
+<span class="text-primary fw-semibold">&lt;section</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"py-5 bg-light"</span><span class="text-primary fw-semibold">&gt;</span>
+  <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"container"</span><span class="text-primary fw-semibold">&gt;</span>
+    <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"row g-4"</span><span class="text-primary fw-semibold">&gt;</span>
+      <span class="text-secondary">&lt;!-- Card 1 --&gt;</span>
+      <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"col-12 col-md-4"</span><span class="text-primary fw-semibold">&gt;</span>
+        <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card h-100 border-0 shadow-sm rounded-4 p-3"</span><span class="text-primary fw-semibold">&gt;</span>
+          <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-body"</span><span class="text-primary fw-semibold">&gt;</span>
+            <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"bg-info bg-opacity-10 text-info rounded-3 d-inline-flex p-2 mb-3"</span><span class="text-primary fw-semibold">&gt;</span>
+              <span class="text-primary fw-semibold">&lt;i</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"fa-solid fa-code fs-5"</span><span class="text-primary fw-semibold">&gt;&lt;/i&gt;</span>
+            <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+            <span class="text-primary fw-semibold">&lt;h3</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-title fw-bold fs-6 text-dark"</span><span class="text-primary fw-semibold">&gt;</span>Web App 4.0<span class="text-primary fw-semibold">&gt;&lt;/h3&gt;</span>
+            <span class="text-primary fw-semibold">&lt;p</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-text text-secondary fs-8 mb-0"</span><span class="text-primary fw-semibold">&gt;</span>
+              Pengembangan sistem berbantuan Tailwind CSS dan integrasi API.
+            <span class="text-primary fw-semibold">&lt;/p&gt;</span>
+          <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+        <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+      <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+
+      <span class="text-secondary">&lt;!-- Card 2 --&gt;</span>
+      <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"col-12 col-md-4"</span><span class="text-primary fw-semibold">&gt;</span>
+        <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card h-100 border-0 shadow-sm rounded-4 p-3"</span><span class="text-primary fw-semibold">&gt;</span>
+          <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-body"</span><span class="text-primary fw-semibold">&gt;</span>
+            <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"bg-success bg-opacity-10 text-success rounded-3 d-inline-flex p-2 mb-3"</span><span class="text-primary fw-semibold">&gt;</span>
+              <span class="text-primary fw-semibold">&lt;i</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"fa-solid fa-microchip fs-5"</span><span class="text-primary fw-semibold">&gt;&lt;/i&gt;</span>
+            <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+            <span class="text-primary fw-semibold">&lt;h3</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-title fw-bold fs-6 text-dark"</span><span class="text-primary fw-semibold">&gt;</span>IoT Integration<span class="text-primary fw-semibold">&gt;&lt;/h3&gt;</span>
+            <span class="text-primary fw-semibold">&lt;p</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-text text-secondary fs-8 mb-0"</span><span class="text-primary fw-semibold">&gt;</span>
+              Konektivitas mikrokontroler dengan dashboard pemantauan langsung.
+            <span class="text-primary fw-semibold">&lt;/p&gt;</span>
+          <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+        <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+      <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+
+      <span class="text-secondary">&lt;!-- Card 3 --&gt;</span>
+      <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"col-12 col-md-4"</span><span class="text-primary fw-semibold">&gt;</span>
+        <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card h-100 border-0 shadow-sm rounded-4 p-3"</span><span class="text-primary fw-semibold">&gt;</span>
+          <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-body"</span><span class="text-primary fw-semibold">&gt;</span>
+            <span class="text-primary fw-semibold">&lt;div</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"bg-primary bg-opacity-10 text-primary rounded-3 d-inline-flex p-2 mb-3"</span><span class="text-primary fw-semibold">&gt;</span>
+              <span class="text-primary fw-semibold">&lt;i</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"fa-solid fa-gears fs-5"</span><span class="text-primary fw-semibold">&gt;&lt;/i&gt;</span>
+            <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+            <span class="text-primary fw-semibold">&lt;h3</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-title fw-bold fs-6 text-dark"</span><span class="text-primary fw-semibold">&gt;</span>Otomasi Sistem<span class="text-primary fw-semibold">&gt;&lt;/h3&gt;</span>
+            <span class="text-primary fw-semibold">&lt;p</span> <span class="text-warning-emphasis">class</span>=<span class="text-success">"card-text text-secondary fs-8 mb-0"</span><span class="text-primary fw-semibold">&gt;</span>
+              Penyederhanaan alur kerja operasional berbasis perangkat lunak.
+            <span class="text-primary fw-semibold">&lt;/p&gt;</span>
+          <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+        <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+      <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+    <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+  <span class="text-primary fw-semibold">&lt;/div&gt;</span>
+<span class="text-primary fw-semibold">&lt;/section&gt;</span></code></pre>
+            </div>
+          </div>
+
+          <!-- 2. Browser Window Preview (Bawah) -->
+          <div class="col-12">
+            <div class="browser-window">
+              <div class="browser-header">
+                <div class="browser-dots">
+                  <span class="browser-dot bg-danger"></span>
+                  <span class="browser-dot bg-warning"></span>
+                  <span class="browser-dot bg-success"></span>
+                </div>
+                <div class="browser-address-bar">
+                  <i class="fa-solid fa-globe text-secondary"></i>
+                  <span>http://localhost:5500/company.html</span>
+                </div>
+              </div>
+
+              <!-- Live Preview Browser Render Bootstrap 5 -->
+              <div class="p-0 bg-light">
+                <!-- 1. Navbar Preview -->
+                <nav
+                  class="navbar navbar-expand-lg bg-white border-bottom py-2"
+                >
+                  <div class="container-fluid px-3">
+                    <a
+                      class="navbar-brand fw-bold text-primary fs-6 mb-0 d-flex align-items-center gap-1"
+                      href="#"
+                    >
+                      <i class="fa-solid fa-cube"></i> TechNusa
+                    </a>
+                    <button
+                      class="navbar-toggler btn-sm p-1"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#previewNav"
+                    >
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="previewNav">
+                      <ul class="navbar-nav mx-auto mb-0 fs-8 fw-medium">
+                        <li class="nav-item">
+                          <a
+                            class="nav-link active text-dark fw-semibold"
+                            href="#"
+                            >Beranda</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-secondary" href="#"
+                            >Tentang</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-secondary" href="#"
+                            >Layanan</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+
+                <!-- 2. Hero Section Preview -->
+                <section class="py-5 text-white text-center bg-hero-custom">
+                  <div class="container px-3 py-2">
+                    <span
+                      class="badge bg-badge-custom text-white rounded-pill px-3 py-2 text-uppercase tracking-wider fs-8 mb-3 fw-semibold"
+                    >
+                      DIGITAL AGENCY
+                    </span>
+                    <h1 class="fw-bold fs-4 mb-2">
+                      Solusi Digital & Otomasi Industri
+                    </h1>
+                    <p
+                      class="text-white-50 fs-7 mb-4 mx-auto"
+                      style="max-width: 550px"
+                    >
+                      Membangun sistem web, aplikasi terintegrasi, dan teknologi
+                      IoT modern untuk percepatan bisnis Anda.
+                    </p>
+                    <div class="d-flex justify-content-center gap-2">
+                      <a
+                        href="#"
+                        class="btn btn-cyan-custom btn-sm fs-8 px-4 py-2 fw-semibold"
+                        >Mulai Konsultasi</a
+                      >
+                      <a
+                        href="#"
+                        class="btn btn-outline-purple-custom btn-sm fs-8 px-4 py-2 fw-semibold"
+                        >Lihat Portfolio</a
+                      >
+                    </div>
+                  </div>
+                </section>
+
+                <!-- 3. About Section Preview -->
+                <section class="py-5 bg-white text-center">
+                  <div class="container px-3">
+                    <span
+                      class="text-primary fw-bold text-uppercase fs-8 tracking-wider mb-2 d-block"
+                      style="color: #6366f1 !important"
+                    >
+                      TENTANG PERUSAHAAN
+                    </span>
+                    <h2 class="fw-bold fs-5 text-dark mb-3">
+                      Mendorong Transformasi Teknologi Terdepan
+                    </h2>
+                    <p
+                      class="text-secondary fs-7 mx-auto mb-0"
+                      style="max-width: 650px"
+                    >
+                      TechNusa adalah penyedia layanan rekayasa perangkat lunak
+                      dan integrasi sistem. Kami berfokus menyajikan antarmuka
+                      pengguna yang cepat, responsif, dan mudah digunakan untuk
+                      berbagai skala industri.
+                    </p>
+                  </div>
+                </section>
+
+                <!-- 4. Services Grid Section Preview -->
+                <section class="py-5 bg-light">
+                  <div class="container px-3">
+                    <div class="row g-3">
+                      <!-- Card 1 -->
+                      <div class="col-12 col-md-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-4">
+                          <div class="card-body p-4">
+                            <div
+                              class="rounded-3 d-inline-flex p-2 mb-3"
+                              style="background-color: #e0f2fe; color: #0284c7"
+                            >
+                              <i class="fa-solid fa-code fs-5"></i>
+                            </div>
+                            <h3 class="card-title fw-bold fs-6 text-dark mb-2">
+                              Web App 4.0
+                            </h3>
+                            <p class="card-text text-secondary fs-8 mb-0">
+                              Pengembangan sistem berbantuan Tailwind CSS dan
+                              integrasi API.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Card 2 -->
+                      <div class="col-12 col-md-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-4">
+                          <div class="card-body p-4">
+                            <div
+                              class="rounded-3 d-inline-flex p-2 mb-3"
+                              style="background-color: #dcfce7; color: #16a34a"
+                            >
+                              <i class="fa-solid fa-microchip fs-5"></i>
+                            </div>
+                            <h3 class="card-title fw-bold fs-6 text-dark mb-2">
+                              IoT Integration
+                            </h3>
+                            <p class="card-text text-secondary fs-8 mb-0">
+                              Konektivitas mikrokontroler dengan dashboard
+                              pemantauan langsung.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Card 3 -->
+                      <div class="col-12 col-md-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-4">
+                          <div class="card-body p-4">
+                            <div
+                              class="rounded-3 d-inline-flex p-2 mb-3"
+                              style="background-color: #f3e8ff; color: #9333ea"
+                            >
+                              <i class="fa-solid fa-gears fs-5"></i>
+                            </div>
+                            <h3 class="card-title fw-bold fs-6 text-dark mb-2">
+                              Otomasi Sistem
+                            </h3>
+                            <p class="card-text text-secondary fs-8 mb-0">
+                              Penyederhanaan alur kerja operasional berbasis
+                              perangkat lunak.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-4 bg-light p-4 rounded-3 border text-secondary fs-7 leading-relaxed"
+        >
+          <h4
+            class="fw-bold text-dark fs-6 d-flex align-items-center gap-2 mb-2"
+          >
+            <i class="fa-solid fa-book-open text-primary"></i> Catatan
+            Implementasi Bootstrap 5
+          </h4>
+          <p class="mb-0">
+            Tata letak di atas memanfaatkan struktur grid Bootstrap (<code
+              class="code-font text-primary"
+              >col-12 col-md-4</code
+            >), komponen tombol (<code class="code-font text-primary">btn</code
+            >), badge (<code class="code-font text-primary">rounded-pill</code
+            >), serta kelas utilitas pendukung seperti
+            <code class="code-font text-primary">d-inline-flex</code> dan
+            <code class="code-font text-primary">bg-opacity-10</code> untuk
+            menciptakan tampilan antarmuka yang modern dan responsif.
+          </p>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="5.3.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Modul 5.3
+        </a>
+        <a
+          href="index.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Selesai <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </main>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

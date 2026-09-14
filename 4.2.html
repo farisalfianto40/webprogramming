@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      4.2 DOM Manipulation, Event, Validation, & localStorage - Web Programming
+      4.0
+    </title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+
+        /* Mencegah seleksi teks (Anti-Select/Copas) */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE 10+ / Edge */
+        user-select: none; /* Standard */
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Styling Kartu sesuai Tema */
+      .module-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .badge-number {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+
+      /* Editor Style Light Mode */
+      .code-window {
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #cbd5e1;
+      }
+
+      .code-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .code-tab {
+        background-color: #ffffff;
+        color: #0284c7;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem 0.375rem 0 0;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-family: "Fira Code", monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Browser Window Style Light */
+      .browser-window {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        border: 1px solid #cbd5e1;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      .browser-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .browser-dots {
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .browser-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .browser-address-bar {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Style khusus untuk demo To-Do List di Browser Preview */
+      .todo-demo-container input {
+        padding: 6px;
+        margin-right: 5px;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+      .todo-demo-container button.btn-tambah {
+        padding: 6px 12px;
+        cursor: pointer;
+        background-color: #4f46e5;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+      .todo-demo-container ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 15px;
+      }
+      .todo-demo-container li {
+        background-color: #f1f5f9;
+        padding: 8px 12px;
+        margin-bottom: 6px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        gap: 10px;
+      }
+      .todo-demo-container li span {
+        word-break: break-all; /* Mencegah teks panjang merusak layout */
+      }
+      .todo-demo-container .btn-hapus {
+        color: #e11d48;
+        background: none;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 12px;
+        flex-shrink: 0; /* Menjaga tombol hapus tidak terkepras */
+      }
+    </style>
+  </head>
+  <body class="min-h-screen pb-16">
+    <!-- Header Portal -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarta
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 04</span>
+            <span>•</span>
+            <span>JavaScript Interaktif</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            4.2 DOM Manipulation, Event Handling, Validasi Form, & localStorage
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Penguasaan manipulasi struktur elemen web, penanganan interaksi
+            pengguna, validasi data masukan, serta penyimpanan data lokal pada
+            peramban web.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 1: DOM Manipulation -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >01</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">DOM Manipulation</h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          <strong class="text-slate-800">Document Object Model (DOM)</strong>
+          merupakan antarmuka pemrograman yang memungkinkan JavaScript untuk
+          mengakses serta mengubah konten teks elemen HTML secara dinamik.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-js text-yellow-500"></i> dom-basic.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-indigo-600 font-semibold">&lt;h1</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"judul"</span><span class="text-indigo-600 font-semibold">&gt;</span><span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;script&gt;</span>
+  <span class="text-slate-400">// Seleksi elemen berdasarkan ID</span>
+  <span class="text-purple-600 font-semibold">const</span> elJudul = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'judul'</span>);
+
+  <span class="text-slate-400">// Mengubah isi teks elemen</span>
+  elJudul.textContent = <span class="text-emerald-600">'Halo saya Budi'</span>;
+<span class="text-indigo-600 font-semibold">&lt;/script&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/dom-basic.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-center items-start text-slate-800"
+            >
+              <h1 id="demoJudul1" class="text-2xl font-bold text-slate-900">
+                Halo saya Budi
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan Metode
+            Seleksi & Manipulasi
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <code class="code-font text-sky-600"
+                >document.getElementById('judul')</code
+              >: Mengambil referensi elemen DOM berdasarkan atribut
+              <code class="code-font">id="judul"</code>.
+            </li>
+            <li>
+              <code class="code-font text-sky-600"
+                >textContent = 'Halo saya Budi'</code
+              >: Memperbarui isi teks elemen
+              <code class="code-font">&lt;h1&gt;</code> secara langsung.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 2: DOM Manipulation & Event Handling -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >02</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            DOM Manipulation & Event Handling
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Kombinasi manipulasi DOM dengan penanganan peristiwa (<code
+            class="code-font text-sky-600"
+            >Event Handling</code
+          >) membuat halaman web merespons interaksi pengguna secara langsung
+          saat tombol diklik.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-js text-yellow-500"></i> dom-event.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"btnYa"</span><span class="text-indigo-600 font-semibold">&gt;</span>Ya<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"btnTidak"</span><span class="text-indigo-600 font-semibold">&gt;</span>Tidak<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Status siswa: <span class="text-indigo-600 font-semibold">&lt;span</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"statusHasil"</span><span class="text-indigo-600 font-semibold">&gt;&lt;/span&gt;&lt;/p&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;script&gt;</span>
+  <span class="text-purple-600 font-semibold">const</span> btnYa = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'btnYa'</span>);
+  <span class="text-purple-600 font-semibold">const</span> btnTidak = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'btnTidak'</span>);
+  <span class="text-purple-600 font-semibold">const</span> hasil = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'statusHasil'</span>);
+
+  btnYa.<span class="text-blue-600">addEventListener</span>(<span class="text-emerald-600">'click'</span>, () =&gt; {
+    hasil.textContent = <span class="text-emerald-600">'Lulus'</span>;
+  });
+
+  btnTidak.<span class="text-blue-600">addEventListener</span>(<span class="text-emerald-600">'click'</span>, () =&gt; {
+    hasil.textContent = <span class="text-emerald-600">'Tidak Lulus'</span>;
+  });
+<span class="text-indigo-600 font-semibold">&lt;/script&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/dom-event.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-center items-start text-slate-800 text-sm space-y-4"
+            >
+              <div class="flex gap-2">
+                <button
+                  id="demoBtnYa2"
+                  type="button"
+                  class="px-3 py-1 bg-slate-100 border border-slate-400 rounded text-slate-800 text-xs font-normal"
+                >
+                  Ya
+                </button>
+                <button
+                  id="demoBtnTidak2"
+                  type="button"
+                  class="px-3 py-1 bg-slate-100 border border-slate-400 rounded text-slate-800 text-xs font-normal"
+                >
+                  Tidak
+                </button>
+              </div>
+              <p class="text-slate-900 text-sm">
+                Status siswa: <span id="demoText2"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan Event
+            Listener
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <code class="code-font text-sky-600"
+                >document.getElementById('statusHasil')</code
+              >: Mengambil target elemen
+              <code class="code-font">&lt;span&gt;</code> yang berada di dalam
+              paragraf.
+            </li>
+            <li>
+              <code class="code-font text-sky-600">textContent = 'Lulus'</code>
+              / <code class="code-font text-sky-600">'Tidak Lulus'</code>:
+              Memperbarui isi dari elemen
+              <code class="code-font">&lt;span&gt;</code> secara spesifik tanpa
+              mengubah teks statis "Status siswa: ".
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 3: Validasi Form Client-Side -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >03</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Validasi Form Client-Side
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Pemeriksaan data pada formulir (<code class="code-font text-sky-600"
+            >&lt;form&gt;</code
+          >) sebelum dikirimkan guna memastikan isian memenuhi kriteria
+          kualifikasi serta menghentikan aksi default submit.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode (Sisi Kiri) -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-js text-yellow-500"></i> validasi.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-indigo-600 font-semibold">&lt;form</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"saranForm"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;label&gt;</span>Kritik / Saran:<span class="text-indigo-600 font-semibold">&lt;/label&gt;&lt;br&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"text"</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"pesanSaran"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"submit"</span><span class="text-indigo-600 font-semibold">&gt;</span>Kirim<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/form&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;p</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"statusForm"</span><span class="text-indigo-600 font-semibold">&gt;&lt;/p&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;script&gt;</span>
+  document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'saranForm'</span>).<span class="text-blue-600">addEventListener</span>(<span class="text-emerald-600">'submit'</span>, (e) =&gt; {
+    e.<span class="text-blue-600">preventDefault</span>();
+    <span class="text-purple-600 font-semibold">const</span> input = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'pesanSaran'</span>).value;
+    <span class="text-purple-600 font-semibold">const</span> status = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'statusForm'</span>);
+
+    <span class="text-purple-600 font-semibold">if</span> (input.trim() === <span class="text-emerald-600">''</span>) {
+      status.textContent = <span class="text-emerald-600">'Kritik / saran wajib diisi!'</span>;
+    } <span class="text-purple-600 font-semibold">else</span> {
+      status.textContent = <span class="text-emerald-600">'berhasil dikirim'</span>;
+    }
+  });
+<span class="text-indigo-600 font-semibold">&lt;/script&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser (Sisi Kanan) -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/validasi.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-center items-start text-slate-800 text-sm"
+            >
+              <form id="demoForm3" class="space-y-3 w-full max-w-xs">
+                <div>
+                  <label
+                    for="demoUser3"
+                    class="block text-xs font-medium text-slate-800 mb-1"
+                  >
+                    Kritik / Saran:
+                  </label>
+                  <input
+                    type="text"
+                    id="demoUser3"
+                    class="w-full px-3 py-1.5 border border-slate-300 rounded text-slate-800 text-xs focus:outline-none focus:border-slate-500"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="px-3 py-1 bg-slate-100 border border-slate-400 rounded text-slate-800 text-xs font-normal hover:bg-slate-200 transition"
+                >
+                  Kirim
+                </button>
+              </form>
+              <p id="demoError3" class="mt-3 text-xs text-slate-800"></p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan
+            Mekanisme Validasi
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <code class="code-font text-sky-600">e.preventDefault()</code>:
+              Mencegah alur perilaku default peramban yang akan memuat ulang
+              (refresh) halaman saat tombol submit ditekan.
+            </li>
+            <li>
+              <code class="code-font text-sky-600">input.trim() === ''</code>:
+              Memeriksa apakah masukan teks dalam kondisi kosong atau hanya
+              berisi spasi.
+            </li>
+            <li>
+              <strong>Pesan Output:</strong> Menampilkan pesan kesalahan jika
+              masukan kosong, atau merespons dengan tulisan
+              <strong>"berhasil dikirim"</strong> saat masukan valid.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 4: Penyimpanan Lokal (localStorage) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >04</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Penyimpanan Lokal (&lt;localStorage&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          <code class="code-font text-sky-600">localStorage</code> menyimpan
+          data berpasangan kunci-nilai (<em>key-value</em>) langsung pada
+          browser klien tanpa memiliki masa kedaluwarsa saat halaman ditutup.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Polos Tanpa CSS (Sisi Kiri) -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-js text-yellow-500"></i> storage.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"text"</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"inputData"</span> <span class="text-amber-600">placeholder</span>=<span class="text-emerald-600">"Ketik data tersimpan..."</span><span class="text-indigo-600 font-semibold">&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"btnSimpan"</span><span class="text-indigo-600 font-semibold">&gt;</span>Simpan<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"btnHapus"</span><span class="text-indigo-600 font-semibold">&gt;</span>Hapus<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Nilai tersimpan: <span class="text-indigo-600 font-semibold">&lt;span</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"tampilData"</span><span class="text-indigo-600 font-semibold">&gt;</span>(Belum ada data)<span class="text-indigo-600 font-semibold">&gt;&lt;/span&gt;&lt;/p&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;script&gt;</span>
+  <span class="text-purple-600 font-semibold">const</span> inputData = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'inputData'</span>);
+  <span class="text-purple-600 font-semibold">const</span> btnSimpan = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'btnSimpan'</span>);
+  <span class="text-purple-600 font-semibold">const</span> btnHapus = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'btnHapus'</span>);
+  <span class="text-purple-600 font-semibold">const</span> tampilData = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'tampilData'</span>);
+
+  btnSimpan.<span class="text-blue-600">addEventListener</span>(<span class="text-emerald-600">'click'</span>, () =&gt; {
+    localStorage.<span class="text-blue-600">setItem</span>(<span class="text-emerald-600">'dataKu'</span>, inputData.value);
+    tampilData.textContent = inputData.value;
+  });
+
+  btnHapus.<span class="text-blue-600">addEventListener</span>(<span class="text-emerald-600">'click'</span>, () =&gt; {
+    localStorage.<span class="text-blue-600">removeItem</span>(<span class="text-emerald-600">'dataKu'</span>);
+    tampilData.textContent = <span class="text-emerald-600">'(Belum ada data)'</span>;
+  });
+<span class="text-indigo-600 font-semibold">&lt;/script&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser Standard/Polos (Sisi Kanan) -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/storage.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-center text-slate-800 text-xs space-y-3"
+            >
+              <div class="flex items-center gap-2">
+                <input
+                  type="text"
+                  id="demoStorageInput"
+                  placeholder="Ketik data tersimpan..."
+                  class="border border-slate-400 px-2 py-1 text-xs"
+                />
+                <button
+                  id="demoSaveBtn"
+                  type="button"
+                  class="bg-slate-200 border border-slate-400 px-2 py-1 text-xs hover:bg-slate-300"
+                >
+                  Simpan
+                </button>
+                <button
+                  id="demoClearBtn"
+                  type="button"
+                  class="bg-slate-200 border border-slate-400 px-2 py-1 text-xs hover:bg-slate-300"
+                >
+                  Hapus
+                </button>
+              </div>
+              <p class="text-xs text-slate-800">
+                Nilai tersimpan:
+                <span id="demoStorageVal">(Belum ada data)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan LocalStorage -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan
+            Mekanisme LocalStorage
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <code class="code-font text-sky-600"
+                >localStorage.setItem('dataKu', nilai)</code
+              >: Menyimpan teks dari input ke dalam memori peramban dengan kunci
+              <code class="code-font text-sky-600">'dataKu'</code>.
+            </li>
+            <li>
+              <code class="code-font text-sky-600"
+                >localStorage.removeItem('dataKu')</code
+              >: Menghapus data dengan kunci
+              <code class="code-font text-sky-600">'dataKu'</code> dari memori
+              peramban.
+            </li>
+            <li>
+              Data yang tersimpan akan tetap ada meskipun halaman direfresh atau
+              browser ditutup sampai tombol <strong>Hapus</strong> ditekan.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 5: Studi Kasus: Aplikasi Pengingat Tugas (To-Do List Persistent) -->
+      <section
+        class="module-card p-6 sm:p-8 border-indigo-200 bg-gradient-to-b from-white to-slate-50/50"
+      >
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm bg-indigo-100 text-indigo-700"
+            >05</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Studi Kasus: Aplikasi Pengingat Tugas (To-Do List Persistent)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Integrasi komprehensif antara manipulasi elemen DOM, penanganan event
+          pemicu, validasi masukan kosong, serta penyimpanan data dinamis
+          menggunakan <code class="code-font text-sky-600">localStorage</code>.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode (Sisi Kiri: CSS Murni + HTML + JS) -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> todo.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-indigo-600 font-semibold">&lt;!DOCTYPE html&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;html</span> <span class="text-amber-600">lang</span>=<span class="text-emerald-600">"id"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;head&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">charset</span>=<span class="text-emerald-600">"UTF-8"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;title&gt;</span>Daftar Tugas Praktikum<span class="text-indigo-600 font-semibold">&lt;/title&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;style&gt;</span>
+    <span class="text-slate-400">/* Styling Dasar Murni */</span>
+    <span class="text-purple-600 font-semibold">body</span> { <span class="text-amber-600">font-family</span>: Arial, sans-serif; <span class="text-amber-600">padding</span>: 20px; }
+    <span class="text-purple-600 font-semibold">input</span> { <span class="text-amber-600">padding</span>: 6px; <span class="text-amber-600">margin-right</span>: 5px; }
+    <span class="text-purple-600 font-semibold">button</span> { <span class="text-amber-600">padding</span>: 6px 12px; <span class="text-amber-600">cursor</span>: pointer; }
+    <span class="text-purple-600 font-semibold">ul</span> { <span class="text-amber-600">list-style-type</span>: none; <span class="text-amber-600">padding</span>: 0; <span class="text-amber-600">margin-top</span>: 15px; }
+    <span class="text-purple-600 font-semibold">li</span> {
+      <span class="text-amber-600">background-color</span>: #f1f5f9;
+      <span class="text-amber-600">padding</span>: 8px 12px;
+      <span class="text-amber-600">margin-bottom</span>: 6px;
+      <span class="text-amber-600">border-radius</span>: 4px;
+      <span class="text-amber-600">display</span>: flex;
+      <span class="text-amber-600">justify-content</span>: space-between;
+      <span class="text-amber-600">align-items</span>: center;
+      <span class="text-amber-600">gap</span>: 10px;
+    }
+    <span class="text-purple-600 font-semibold">li span</span> {
+      <span class="text-amber-600">word-break</span>: break-all;
+    }
+    <span class="text-purple-600 font-semibold">.btn-hapus</span> {
+      <span class="text-amber-600">color</span>: #e11d48;
+      <span class="text-amber-600">background</span>: none;
+      <span class="text-amber-600">border</span>: none;
+      <span class="text-amber-600">font-weight</span>: bold;
+      <span class="text-amber-600">cursor</span>: pointer;
+      <span class="text-amber-600">flex-shrink</span>: 0;
+    }
+  <span class="text-indigo-600 font-semibold">&lt;/style&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/head&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;body&gt;</span>
+
+  <span class="text-indigo-600 font-semibold">&lt;h1&gt;</span>Daftar Tugas Praktikum<span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+
+  <span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"text"</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"todoInput"</span> <span class="text-amber-600">placeholder</span>=<span class="text-emerald-600">"Tambah tugas baru..."</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">onclick</span>=<span class="text-emerald-600">"tambahTugas()"</span><span class="text-indigo-600 font-semibold">&gt;</span>Tambah<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+
+  <span class="text-indigo-600 font-semibold">&lt;ul</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"todoList"</span><span class="text-indigo-600 font-semibold">&gt;&lt;/ul&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;script&gt;</span>
+  <span class="text-purple-600 font-semibold">let</span> tugas = JSON.<span class="text-blue-600">parse</span>(localStorage.<span class="text-blue-600">getItem</span>(<span class="text-emerald-600">'tugasList'</span>)) || [];
+
+  <span class="text-purple-600 font-semibold">function</span> <span class="text-blue-600">renderTugas</span>() {
+    <span class="text-purple-600 font-semibold">const</span> list = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'todoList'</span>);
+    list.innerHTML = <span class="text-emerald-600">''</span>;
+    tugas.<span class="text-blue-600">forEach</span>((item, index) =&gt; {
+      list.innerHTML += `<span class="text-emerald-600">
+        &lt;li&gt;
+          &lt;span&gt;${item}&lt;/span&gt;
+          &lt;button onclick="hapusTugas(${index})" class="btn-hapus"&gt;Hapus&lt;/button&gt;
+        &lt;/li&gt;
+      </span>`;
+    });
+    localStorage.<span class="text-blue-600">setItem</span>(<span class="text-emerald-600">'tugasList'</span>, JSON.<span class="text-blue-600">stringify</span>(tugas));
+  }
+
+  <span class="text-purple-600 font-semibold">function</span> <span class="text-blue-600">tambahTugas</span>() {
+    <span class="text-purple-600 font-semibold">const</span> input = document.<span class="text-blue-600">getElementById</span>(<span class="text-emerald-600">'todoInput'</span>);
+    <span class="text-purple-600 font-semibold">if</span> (input.value.<span class="text-blue-600">trim</span>() === <span class="text-emerald-600">''</span>) <span class="text-purple-600 font-semibold">return</span> <span class="text-blue-600">alert</span>(<span class="text-emerald-600">'Isi tugas!'</span>);
+    tugas.<span class="text-blue-600">push</span>(input.value);
+    input.value = <span class="text-emerald-600">''</span>;
+    <span class="text-blue-600">renderTugas</span>();
+  }
+
+  <span class="text-purple-600 font-semibold">function</span> <span class="text-blue-600">hapusTugas</span>(index) {
+    tugas.<span class="text-blue-600">splice</span>(index, 1);
+    <span class="text-blue-600">renderTugas</span>();
+  }
+
+  <span class="text-blue-600">renderTugas</span>();
+<span class="text-indigo-600 font-semibold">&lt;/script&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/body&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/html&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser Interaktif dengan Styling CSS Murni (Sisi Kanan) -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/todo.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow todo-demo-container text-slate-800"
+            >
+              <h1 class="text-xl font-bold text-slate-900 mb-3">
+                Daftar Tugas Praktikum
+              </h1>
+
+              <div class="flex items-center">
+                <input
+                  type="text"
+                  id="todoInputApp"
+                  placeholder="Tambah tugas baru..."
+                />
+                <button id="todoAddBtnApp" type="button" class="btn-tambah">
+                  Tambah
+                </button>
+              </div>
+
+              <ul id="todoListApp">
+                <!-- Item tugas dirender melalui script -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="4.1.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Modul 4.1
+        </a>
+        <a
+          href="4.3.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Modul 4.3 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </main>
+
+    <!-- Script Interaktif untuk Komponen Demo Browser -->
+    <script>
+      // Demo Section 2: DOM Manipulation & Event
+      const demoBtnYa2 = document.getElementById("demoBtnYa2");
+      const demoBtnTidak2 = document.getElementById("demoBtnTidak2");
+      const demoText2 = document.getElementById("demoText2");
+
+      demoBtnYa2.addEventListener("click", () => {
+        demoText2.textContent = "Lulus";
+      });
+
+      demoBtnTidak2.addEventListener("click", () => {
+        demoText2.textContent = "Tidak Lulus";
+      });
+
+      // Demo Section 3: Form Validation
+      const demoForm3 = document.getElementById("demoForm3");
+      const demoUser3 = document.getElementById("demoUser3");
+      const demoError3 = document.getElementById("demoError3");
+
+      demoForm3.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (demoUser3.value.trim() === "") {
+          demoError3.textContent = "Kritik / saran wajib diisi!";
+        } else {
+          demoError3.textContent = "berhasil dikirim";
+        }
+      });
+
+      // Demo Section 4: LocalStorage Sederhana
+      const demoStorageInput = document.getElementById("demoStorageInput");
+      const demoSaveBtn = document.getElementById("demoSaveBtn");
+      const demoClearBtn = document.getElementById("demoClearBtn");
+      const demoStorageVal = document.getElementById("demoStorageVal");
+
+      // Muat nilai awal jika ada di localStorage
+      const savedData = localStorage.getItem("dataKu");
+      if (savedData) {
+        demoStorageVal.textContent = savedData;
+      }
+
+      demoSaveBtn.addEventListener("click", () => {
+        localStorage.setItem("dataKu", demoStorageInput.value);
+        demoStorageVal.textContent = demoStorageInput.value;
+      });
+
+      demoClearBtn.addEventListener("click", () => {
+        localStorage.removeItem("dataKu");
+        demoStorageVal.textContent = "(Belum ada data)";
+      });
+
+      // Demo Section 5: To-Do App Interaktif Sederhana (Sesuai kode revisi)
+      const todoInputApp = document.getElementById("todoInputApp");
+      const todoAddBtnApp = document.getElementById("todoAddBtnApp");
+      const todoListApp = document.getElementById("todoListApp");
+
+      let tasks = JSON.parse(localStorage.getItem("tugasList")) || [];
+
+      function renderAppTasks() {
+        todoListApp.innerHTML = "";
+        if (tasks.length === 0) {
+          todoListApp.innerHTML =
+            '<li style="background:none; padding:0; color:#94a3b8; font-style:italic;">Belum ada tugas tersimpan.</li>';
+        }
+        tasks.forEach((t, i) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <span>${t}</span>
+            <button onclick="deleteAppTask(${i})" class="btn-hapus">Hapus</button>
+          `;
+          todoListApp.appendChild(li);
+        });
+        localStorage.setItem("tugasList", JSON.stringify(tasks));
+      }
+
+      todoAddBtnApp.addEventListener("click", () => {
+        if (todoInputApp.value.trim() === "") {
+          alert("Isi tugas!");
+          return;
+        }
+        tasks.push(todoInputApp.value.trim());
+        todoInputApp.value = "";
+        renderAppTasks();
+      });
+
+      window.deleteAppTask = function (index) {
+        tasks.splice(index, 1);
+        renderAppTasks();
+      };
+
+      renderAppTasks();
+    </script>
+  </body>
+</html>

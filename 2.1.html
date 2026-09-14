@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.1 Tag Dasar & Semantik - Web Programming 4.0</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+
+        /* Mencegah seleksi teks (Anti-Select/Copas) */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE 10+ / Edge */
+        user-select: none; /* Standard */
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Styling Kartu sesuai Tema Referensi Gambar */
+      .module-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .badge-number {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+
+      /* Editor Style Light Mode */
+      .code-window {
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #cbd5e1;
+      }
+
+      .code-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .code-tab {
+        background-color: #ffffff;
+        color: #0284c7;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem 0.375rem 0 0;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-family: "Fira Code", monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Browser Window Style Light */
+      .browser-window {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        border: 1px solid #cbd5e1;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      .browser-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .browser-dots {
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .browser-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .browser-address-bar {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen pb-16">
+    <!-- Header Portal -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarata
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 02</span>
+            <span>•</span>
+            <span>HTML</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            2.1 Tag Dasar & Semantik (Heading, Paragraph, Link, Image)
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Fondasi penyusunan halaman web interaktif beserta penjelasan fungsi
+            dan struktur dasarnya.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 1: Pengertian & Struktur Dasar HTML -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >01</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Pengertian & Struktur Dasar HTML
+          </h3>
+        </div>
+
+        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+          <strong class="text-slate-800"
+            >HTML (HyperText Markup Language)</strong
+          >
+          adalah bahasa standar yang digunakan untuk membuat dan menyusun
+          halaman web. HTML menentukan struktur dan isi dari suatu halaman,
+          seperti teks, gambar, tautan, dan tabel.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+            <span class="text-xs font-bold text-sky-600 block mb-1 uppercase"
+              >HyperText</span
+            >
+            <p class="text-xs text-slate-600">
+              Teks yang memiliki link (tautan) ke dokumen atau halaman web lain.
+            </p>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+            <span class="text-xs font-bold text-sky-600 block mb-1 uppercase"
+              >Markup Language</span
+            >
+            <p class="text-xs text-slate-600">
+              Bahasa yang menggunakan tag atau penanda untuk mengatur tampilan
+              isi halaman.
+            </p>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+            <span class="text-xs font-bold text-amber-600 block mb-1 uppercase"
+              >Bukan Pemrograman</span
+            >
+            <p class="text-xs text-slate-600">
+              HTML adalah penanda struktur, tidak memiliki logika
+              aritmatika/kondisional.
+            </p>
+          </div>
+        </div>
+
+        <!-- Diagram Hirarki HTML -->
+        <div
+          class="mb-6 p-6 bg-slate-50 rounded-xl border border-slate-200 flex flex-col items-center"
+        >
+          <h4
+            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-6 flex items-center gap-2 self-start"
+          >
+            <i class="fa-solid fa-sitemap text-sky-500"></i> Diagram Hirarki
+            Elemen (DOM Tree)
+          </h4>
+
+          <div
+            class="w-full max-w-lg flex flex-col items-center gap-4 text-xs font-semibold code-font"
+          >
+            <!-- Root: html -->
+            <div
+              class="bg-cyan-400 text-slate-900 px-6 py-2 rounded-xl shadow-sm border border-cyan-300 font-bold"
+            >
+              &lt;html&gt;
+            </div>
+
+            <!-- Branch Level 1 -->
+            <div
+              class="w-2/3 border-t-2 border-slate-300 h-4 relative flex justify-between"
+            >
+              <div class="w-0.5 bg-slate-300 h-4 absolute left-0 top-0"></div>
+              <div class="w-0.5 bg-slate-300 h-4 absolute right-0 top-0"></div>
+            </div>
+
+            <!-- Head & Body -->
+            <div class="w-full flex justify-between gap-4 -mt-4">
+              <!-- Head Branch -->
+              <div class="flex-1 flex flex-col items-center gap-3">
+                <div
+                  class="w-full bg-amber-400 text-slate-900 py-2.5 rounded-xl shadow-sm text-center font-bold"
+                >
+                  &lt;head&gt;
+                </div>
+                <div class="w-0.5 bg-slate-300 h-4"></div>
+                <div
+                  class="w-full bg-amber-200 text-amber-900 py-2 rounded-xl text-center"
+                >
+                  &lt;title&gt;
+                </div>
+              </div>
+
+              <!-- Body Branch -->
+              <div class="flex-1 flex flex-col items-center gap-3">
+                <div
+                  class="w-full bg-rose-500 text-white py-2.5 rounded-xl shadow-sm text-center font-bold"
+                >
+                  &lt;body&gt;
+                </div>
+                <div
+                  class="w-2/3 border-t-2 border-slate-300 h-4 relative flex justify-between"
+                >
+                  <div
+                    class="w-0.5 bg-slate-300 h-4 absolute left-0 top-0"
+                  ></div>
+                  <div
+                    class="w-0.5 bg-slate-300 h-4 absolute right-0 top-0"
+                  ></div>
+                </div>
+                <div class="w-full flex gap-2 -mt-3">
+                  <div
+                    class="flex-1 bg-rose-400 text-white py-2 rounded-xl text-center"
+                  >
+                    &lt;h1&gt;
+                  </div>
+                  <div
+                    class="flex-1 bg-rose-400 text-white py-2 rounded-xl text-center"
+                  >
+                    &lt;p&gt;
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabel Struktur Utama -->
+        <h4
+          class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center gap-2"
+        >
+          <i class="fa-solid fa-table text-sky-500"></i> Tabel Struktur Utama
+          HTML
+        </h4>
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-left text-sm">
+            <thead
+              class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200"
+            >
+              <tr>
+                <th class="py-3 px-4 w-1/3">Bagian</th>
+                <th class="py-3 px-4">Fungsi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-2.5 px-4 code-font text-sky-600 font-semibold">
+                  &lt;!DOCTYPE html&gt;
+                </td>
+                <td class="py-2.5 px-4">
+                  Menyatakan bahwa dokumen menggunakan standar HTML5
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-2.5 px-4 code-font text-sky-600 font-semibold">
+                  &lt;html&gt;
+                </td>
+                <td class="py-2.5 px-4">
+                  Elemen utama (root) yang membungkus seluruh dokumen HTML
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-2.5 px-4 code-font text-sky-600 font-semibold">
+                  &lt;head&gt;
+                </td>
+                <td class="py-2.5 px-4">
+                  Berisi metadata/informasi dokumen (tidak tampil langsung di
+                  area halaman web)
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-2.5 px-4 code-font text-sky-600 font-semibold">
+                  &lt;title&gt;
+                </td>
+                <td class="py-2.5 px-4">
+                  Judul halaman yang muncul pada tab browser
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-2.5 px-4 code-font text-sky-600 font-semibold">
+                  &lt;body&gt;
+                </td>
+                <td class="py-2.5 px-4">
+                  Berisi seluruh konten visual yang tampil di layar browser
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="py-2.5 px-4 code-font text-sky-600 font-semibold">
+                  &lt;h1&gt;, &lt;p&gt;
+                </td>
+                <td class="py-2.5 px-4">
+                  Elemen untuk membuat judul (heading) dan paragraf
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 2: Heading (<h1> - <h6>) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >02</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Heading (&lt;h1&gt; - &lt;h6&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Heading digunakan untuk mendefinisikan judul atau sub-judul pada
+          halaman web. Penggunaan heading yang runtut mempermudah pembaca dan
+          mesin pencari (SEO) memahami hirarki informasi.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span
+                  class="w-3 h-3 rounded-full bg-rose-400 inline-block"
+                ></span>
+                <span
+                  class="w-3 h-3 rounded-full bg-amber-400 inline-block"
+                ></span>
+                <span
+                  class="w-3 h-3 rounded-full bg-emerald-400 inline-block"
+                ></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> heading.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-slate-400">&lt;!DOCTYPE html&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;html</span> <span class="text-amber-600">lang</span>=<span class="text-emerald-600">"en"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;head&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">charset</span>=<span class="text-emerald-600">"UTF-8"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;title&gt;</span>Latihan Heading<span class="text-indigo-600 font-semibold">&lt;/title&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/head&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;body&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;h1&gt;</span>Ini adalah heading 1<span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;h2&gt;</span>Ini adalah heading 2<span class="text-indigo-600 font-semibold">&lt;/h2&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;h3&gt;</span>Ini adalah heading 3<span class="text-indigo-600 font-semibold">&lt;/h3&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;h4&gt;</span>Ini adalah heading 4<span class="text-indigo-600 font-semibold">&lt;/h4&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;h5&gt;</span>Ini adalah heading 5<span class="text-indigo-600 font-semibold">&lt;/h5&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;h6&gt;</span>Ini adalah heading 6<span class="text-indigo-600 font-semibold">&lt;/h6&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/body&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/html&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/heading.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow space-y-1 text-slate-900 border-t border-slate-100"
+            >
+              <h1 class="text-2xl font-bold border-b pb-1">
+                Ini adalah heading 1
+              </h1>
+              <h2 class="text-xl font-bold">Ini adalah heading 2</h2>
+              <h3 class="text-lg font-semibold">Ini adalah heading 3</h3>
+              <h4 class="text-base font-medium">Ini adalah heading 4</h4>
+              <h5 class="text-sm font-normal">Ini adalah heading 5</h5>
+              <h6 class="text-xs font-light text-slate-500">
+                Ini adalah heading 6
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-3 text-sm text-slate-600 leading-relaxed">
+          <h4 class="font-bold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan Materi
+            Heading (Tingkat Hirarki &amp; Fungsi)
+          </h4>
+          <p>
+            Elemen heading menentukan struktur dokumen secara semantik.
+            Sebaiknya tidak memilih tingkat heading hanya berdasarkan ukuran
+            tampilannya, melainkan berdasarkan hirarki struktur konten:
+          </p>
+          <ul class="list-disc list-inside space-y-2 pt-1 text-slate-600">
+            <li>
+              <strong>H1 (&lt;h1&gt;):</strong> Judul utama halaman web. Hanya
+              boleh ada <strong>satu</strong> tag
+              <code class="code-font text-sky-600">&lt;h1&gt;</code> per dokumen
+              agar struktur SEO tetap optimal.
+            </li>
+            <li>
+              <strong>H2 (&lt;h2&gt;):</strong> Sub-judul bagian utama (Section)
+              yang digunakan untuk membagi bab atau topik pembahasan besar.
+            </li>
+            <li>
+              <strong>H3 (&lt;h3&gt;):</strong> Sub-bagian dari
+              <code class="code-font text-sky-600">&lt;h2&gt;</code> yang
+              dipakai untuk merinci rincian topik di bawah sub-bab.
+            </li>
+            <li>
+              <strong>H4 - H6 (&lt;h4&gt; - &lt;h6&gt;):</strong> Sub-hirarki
+              tingkat lanjut untuk komponen kecil, widget, footnote, atau judul
+              kartu modul.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 3: Paragraph (<p>) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >03</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Paragraph (&lt;p&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Tag
+          <code
+            class="code-font bg-slate-100 text-sky-600 px-1.5 py-0.5 rounded"
+            >&lt;p&gt;</code
+          >
+          digunakan untuk mengelompokkan kalimat menjadi satu paragraf
+          terstruktur.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> paragraf.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-slate-400">&lt;!DOCTYPE html&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;html</span> <span class="text-amber-600">lang</span>=<span class="text-emerald-600">"en"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;head&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;title&gt;</span>Latihan Paragraf<span class="text-indigo-600 font-semibold">&lt;/title&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/head&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;body&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Ini adalah paragraf pertama dalam web.<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Paragraf kedua otomatis berjarak.<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/body&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/html&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/paragraf.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-center text-slate-800 text-sm space-y-3"
+            >
+              <p>Ini adalah paragraf pertama dalam web.</p>
+              <p>Paragraf kedua otomatis berjarak.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-3 text-sm text-slate-600 leading-relaxed">
+          <h4 class="font-bold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan Materi
+            Elemen Paragraf & Karakternya
+          </h4>
+          <p>
+            Tag
+            <code class="code-font font-bold text-sky-600">&lt;p&gt;</code>
+            merupakan salah satu tipe elemen <strong>Block-level</strong>. Sifat
+            dan perilaku utamanya meliputi:
+          </p>
+          <ul class="list-disc list-inside space-y-2 pt-1 text-slate-600">
+            <li>
+              <strong>Auto-Margin:</strong> Browser secara otomatis menambahkan
+              margin (jarak vertikal) sebelum dan sesudah tag
+              <code class="code-font">&lt;p&gt;</code> untuk memisahkan antar
+              blok bacaan.
+            </li>
+            <li>
+              <strong>Line Wrapping:</strong> Teks panjang di dalam tag paragraf
+              akan otomatis melipat turun ke baris baru ketika menyentuh batas
+              lebar container/layar.
+            </li>
+            <li>
+              <strong>Penyatuan Spasi:</strong> HTML memangkas spasi ganda atau
+              baris baru berlebih di dalam kode sumber menjadi satu spasi
+              tunggal saja pada tampilan browser. Jika ingin pindah baris secara
+              paksa tanpa membuat paragraf baru, gunakan tag
+              <code class="code-font text-sky-600">&lt;br&gt;</code>.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 4: Hyperlink & List -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >04</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Hyperlink (&lt;a&gt;) & List (&lt;ul&gt;, &lt;ol&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Penggabungan tautan dan daftar item untuk membuat struktur navigasi
+          dan pengelompokan data pada aplikasi web.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> link.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-indigo-600 font-semibold">&lt;h1&gt;</span>Contoh Link<span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"https://www.wikipedia.org"</span> <span class="text-amber-600">target</span>=<span class="text-emerald-600">"_blank"</span><span class="text-indigo-600 font-semibold">&gt;</span>Wikipedia<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"profil.html"</span><span class="text-indigo-600 font-semibold">&gt;</span>File Lokal<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;h1&gt;</span>Contoh List Link<span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;ul&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"https://www.wikipedia.org"</span> <span class="text-amber-600">target</span>=<span class="text-emerald-600">"_blank"</span><span class="text-indigo-600 font-semibold">&gt;</span>Wikipedia<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"profil.html"</span><span class="text-indigo-600 font-semibold">&gt;</span>File Lokal<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/ul&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/link.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow space-y-4 text-slate-800 text-sm"
+            >
+              <div>
+                <h1 class="text-lg font-bold mb-1">Contoh Link</h1>
+                <div class="flex gap-3 text-blue-600 underline">
+                  <a href="https://www.wikipedia.org" target="_blank"
+                    >Wikipedia</a
+                  >
+                  <a href="#">File Lokal</a>
+                </div>
+              </div>
+              <div>
+                <h1 class="text-lg font-bold mb-1">Contoh List Link</h1>
+                <ul class="list-disc list-inside text-blue-600 underline">
+                  <li>
+                    <a href="https://www.wikipedia.org" target="_blank"
+                      >Wikipedia</a
+                    >
+                  </li>
+                  <li><a href="#">File Lokal</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan Materi
+            Hyperlink & Struktur List
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <span class="font-bold text-slate-800 border-b pb-0.5 block"
+                >Hyperlink (&lt;a&gt;)</span
+              >
+              <p>
+                Membuka tautan antar dokumen web. Elemen ini membutuhkan atribut
+                kunci:
+              </p>
+              <ul class="list-disc list-inside space-y-1 text-slate-600">
+                <li>
+                  <code class="code-font text-sky-600">href</code>: Alamat
+                  tujuan (URL eksternal atau file lokal).
+                </li>
+                <li>
+                  <code class="code-font text-sky-600">target="_blank"</code>:
+                  Membuka link di tab/jendela browser baru.
+                </li>
+              </ul>
+            </div>
+            <div class="space-y-1.5">
+              <span class="font-bold text-slate-800 border-b pb-0.5 block"
+                >Daftar / List (&lt;ul&gt;, &lt;ol&gt;)</span
+              >
+              <p>
+                Menyajikan item berurutan atau tidak berurutan secara
+                sistematis:
+              </p>
+              <ul class="list-disc list-inside space-y-1 text-slate-600">
+                <li>
+                  <code class="code-font text-sky-600">&lt;ul&gt;</code>:
+                  Unordered List (daftar berpoin/bullet).
+                </li>
+                <li>
+                  <code class="code-font text-sky-600">&lt;ol&gt;</code>:
+                  Ordered List (daftar berurutan angka/abjad).
+                </li>
+                <li>
+                  <code class="code-font text-sky-600">&lt;li&gt;</code>: List
+                  Item (elemen isi dari daftar).
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Image (<img>) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >05</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">Image (&lt;img&gt;)</h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Tag
+          <code
+            class="code-font bg-slate-100 text-sky-600 px-1.5 py-0.5 rounded"
+            >&lt;img&gt;</code
+          >
+          digunakan untuk menyisipkan gambar media visual ke dalam tata letak
+          dokumen HTML.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> image.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-slate-400">&lt;!DOCTYPE html&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;html</span> <span class="text-amber-600">lang</span>=<span class="text-emerald-600">"id"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;head&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;title&gt;</span>Latihan Image<span class="text-indigo-600 font-semibold">&lt;/title&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/head&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;body&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;h1&gt;</span>Gambar Drone<span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;img</span> <span class="text-amber-600">src</span>=<span class="text-emerald-600">"drone.jpg"</span> <span class="text-amber-600">alt</span>=<span class="text-emerald-600">"Foto Drone"</span> <span class="text-amber-600">width</span>=<span class="text-emerald-600">"300"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/body&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/html&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/image.html</span>
+              </div>
+            </div>
+            <div class="p-6 bg-white flex-grow text-slate-900">
+              <h1 class="text-xl font-bold mb-3">Gambar Drone</h1>
+              <img
+                src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=500&auto=format&fit=crop&q=60"
+                alt="Foto Drone"
+                class="w-[300px] h-auto rounded border shadow-sm"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-3 text-sm text-slate-600 leading-relaxed">
+          <h4 class="font-bold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan Materi
+            Elemen Gambar &amp; Atributnya
+          </h4>
+          <p>
+            Tag
+            <code class="code-font font-bold text-sky-600">&lt;img&gt;</code>
+            merupakan tipe elemen <strong>Inline (Self-Closing)</strong> yang
+            tidak memerlukan tag penutup. Penggunaannya dikontrol oleh
+            atribut-atribut berikut:
+          </p>
+          <ul class="list-disc list-inside space-y-2 pt-1 text-slate-600">
+            <li>
+              <strong>src (Source):</strong> Menyimpan jalur lokasi/file gambar,
+              baik berupa direktori lokal maupun tautan URL eksternal.
+            </li>
+            <li>
+              <strong>alt (Alternate Text):</strong> Menampilkan teks pengganti
+              jika file gagal dimuat sekaligus membantu aksesibilitas pembaca
+              layar (screen reader).
+            </li>
+            <li>
+              <strong>width &amp; height:</strong> Mengatur dimensi lebar dan
+              tinggi gambar dalam piksel untuk menjaga kestabilan tata letak
+              saat gambar dimuat.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 6: Studi Kasus Komprehensif -->
+      <section
+        class="module-card p-6 sm:p-8 border-indigo-200 bg-gradient-to-b from-white to-slate-50/50"
+      >
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm bg-indigo-100 text-indigo-700"
+            >06</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Studi Kasus: Kartu Artikel Berita (Integrasi Semua Elemen)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Contoh penerapan nyata yang menggabungkan seluruh elemen dasar
+          (<strong>Heading 1–3</strong>, <strong>Gambar</strong>,
+          <strong>Paragraf</strong>, <strong>Daftar Unordered/Ordered</strong>,
+          dan <strong>Hyperlink</strong>) dalam sebuah komponen Halaman Berita
+          Teknologi.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> artikel.html
+              </div>
+            </div>
+            <!-- whitespace-pre-wrap & break-words ditambahkan agar tidak ada scrollbar horizontal -->
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
+            ><code><span class="text-indigo-600 font-semibold">&lt;h1&gt;</span>Portal Berita Teknologi<span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;img</span> 
+    <span class="text-amber-600">src</span>=<span class="text-emerald-600">"robot.jpg"</span> 
+    <span class="text-amber-600">alt</span>=<span class="text-emerald-600">"Robot Otomasi"</span> 
+    <span class="text-amber-600">width</span>=<span class="text-emerald-600">"400"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;h2&gt;</span>Perkembangan Industri Mekatronika 4.0<span class="text-indigo-600 font-semibold">&lt;/h2&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;p&gt;</span>
+    Teknologi otomasi modern kini memanfaatkan integrasi antara sistem kontrol PLC, mikrokontroler, dan jaringan IoT untuk meningkatkan efisiensi industri secara signifikan.
+<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;h3&gt;</span>Fitur Utama Sistem:<span class="text-indigo-600 font-semibold">&lt;/h3&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;ul&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;li&gt;</span>Pemantauan Sensor Real-time<span class="text-indigo-600 font-semibold">&lt;/li&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;li&gt;</span>Integrasi Cloud Firebase<span class="text-indigo-600 font-semibold">&lt;/li&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/ul&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;p&gt;</span>
+    Pelajari selengkapnya di <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"https://id.wikipedia.org"</span> <span class="text-amber-600">target</span>=<span class="text-emerald-600">"_blank"</span><span class="text-indigo-600 font-semibold">&gt;</span>Artikel Wikipedia<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>.
+<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/artikel.html</span>
+              </div>
+            </div>
+            <div class="p-6 bg-white flex-grow space-y-3 text-slate-800">
+              <h1 class="text-2xl font-extrabold text-indigo-950 border-b pb-2">
+                Portal Berita Teknologi
+              </h1>
+
+              <img
+                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&auto=format&fit=crop&q=60"
+                alt="Robot Otomasi"
+                class="w-full max-w-[400px] h-40 object-cover rounded-lg border border-slate-200"
+              />
+
+              <h2 class="text-lg font-bold text-slate-900 pt-1">
+                Perkembangan Industri Mekatronika 4.0
+              </h2>
+
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Teknologi otomasi modern kini memanfaatkan integrasi antara
+                sistem kontrol PLC, mikrokontroler, dan jaringan IoT untuk
+                meningkatkan efisiensi industri secara signifikan.
+              </p>
+
+              <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                <h3 class="text-xs font-bold text-slate-800 mb-1">
+                  Fitur Utama Sistem:
+                </h3>
+                <ul
+                  class="list-disc list-inside text-xs text-slate-600 space-y-0.5"
+                >
+                  <li>Pemantauan Sensor Real-time</li>
+                  <li>Integrasi Cloud Firebase</li>
+                </ul>
+              </div>
+
+              <p class="text-xs text-slate-600 pt-1">
+                Pelajari selengkapnya di
+                <a
+                  href="https://id.wikipedia.org"
+                  target="_blank"
+                  class="text-indigo-600 underline font-semibold hover:text-indigo-800"
+                  >Artikel Wikipedia</a
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-3 text-sm text-slate-600 leading-relaxed">
+          <h4 class="font-bold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Analisis
+            Integrasi Tag pada Studi Kasus
+          </h4>
+          <p>
+            Pada struktur kode studi kasus di atas, seluruh tag disusun
+            berdasarkan fungsionalitas dan hierarki semantik yang logis:
+          </p>
+          <ul class="list-disc list-inside space-y-2 pt-1 text-slate-600">
+            <li>
+              <strong>&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;:</strong> Membagi judul
+              portal utama (<code class="code-font text-sky-600"
+                >&lt;h1&gt;</code
+              >), judul topik berita (<code class="code-font text-sky-600"
+                >&lt;h2&gt;</code
+              >), dan judul daftar fitur (<code class="code-font text-sky-600"
+                >&lt;h3&gt;</code
+              >).
+            </li>
+            <li>
+              <strong>&lt;img&gt;:</strong> Menampilkan media header artikel
+              dengan atribut
+              <code class="code-font text-sky-600">alt</code> untuk deskripsi
+              aksesibilitas.
+            </li>
+            <li>
+              <strong>&lt;p&gt;:</strong> Menampung paragraf ringkasan konten
+              berita agar mudah dibaca.
+            </li>
+            <li>
+              <strong>&lt;ul&gt; &amp; &lt;li&gt;:</strong> Menyusun daftar poin
+              fitur tanpa urutan nomor.
+            </li>
+            <li>
+              <strong>&lt;a&gt;:</strong> Menyediakan tautan rujukan luar yang
+              dibuka pada tab baru lewat atribut
+              <code class="code-font text-sky-600">target="_blank"</code>.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="index.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Home
+        </a>
+        <a
+          href="2.2.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Modul 2.2 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

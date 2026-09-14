@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.2 Table, Form, Input, & Button - Web Programming 4.0</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+
+        /* Mencegah seleksi teks (Anti-Select/Copas) */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE 10+ / Edge */
+        user-select: none; /* Standard */
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Styling Kartu */
+      .module-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .badge-number {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+
+      /* Editor Style Light Mode */
+      .code-window {
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #cbd5e1;
+      }
+
+      .code-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .code-tab {
+        background-color: #ffffff;
+        color: #0284c7;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem 0.375rem 0 0;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-family: "Fira Code", monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Browser Window Style Light */
+      .browser-window {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        border: 1px solid #cbd5e1;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      .browser-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .browser-dots {
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .browser-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .browser-address-bar {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen pb-16">
+    <!-- Header Portal -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarata
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 02</span>
+            <span>•</span>
+            <span>HTML</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            2.2 Table, Form, Input, & Button
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Penyajian data terstruktur menggunakan tabel serta pengumpulan
+            masukan pengguna dengan formulir interaktif.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 1: Pembuatan Tabel Data -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >01</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Pembuatan Tabel Data (&lt;table&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Penggunaan struktur terpisah
+          <code class="code-font">&lt;thead&gt;</code> dan
+          <code class="code-font">&lt;tbody&gt;</code> untuk menyajikan data
+          terstruktur dalam bentuk baris dan kolom.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> tabel.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-indigo-600 font-semibold">&lt;table</span> <span class="text-amber-600">border</span>=<span class="text-emerald-600">"1"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;thead&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;tr&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;th&gt;</span>No<span class="text-indigo-600 font-semibold">&lt;/th&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;th&gt;</span>Nama<span class="text-indigo-600 font-semibold">&lt;/th&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;th&gt;</span>Kelas<span class="text-indigo-600 font-semibold">&lt;/th&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;/tr&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;/thead&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;tbody&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;tr&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>1<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>Ahmad<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>XI TM 1<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;/tr&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;tr&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>2<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>Budi<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+      <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>XI TM 2<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;/tr&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;/tbody&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/table&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/tabel.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-center text-slate-800 text-sm"
+            >
+              <div class="overflow-x-auto">
+                <table
+                  class="w-full text-left border-collapse border border-slate-300 text-xs"
+                >
+                  <thead>
+                    <tr class="bg-slate-100">
+                      <th
+                        class="border border-slate-300 p-2 font-bold text-center w-12"
+                      >
+                        No
+                      </th>
+                      <th class="border border-slate-300 p-2 font-bold">
+                        Nama
+                      </th>
+                      <th class="border border-slate-300 p-2 font-bold">
+                        Kelas
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border border-slate-300 p-2 text-center">1</td>
+                      <td class="border border-slate-300 p-2">Ahmad</td>
+                      <td class="border border-slate-300 p-2">XI TM 1</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-300 p-2 text-center">2</td>
+                      <td class="border border-slate-300 p-2">Budi</td>
+                      <td class="border border-slate-300 p-2">XI TM 2</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Atribut (Format List Sederhana) -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan
+            Atribut Penggabungan Sel Tabel
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>colspan:</strong> Menggabungkan beberapa kolom secara
+              mendatar (horizontal) pada sel tabel.
+            </li>
+            <li>
+              <strong>rowspan:</strong> Menggabungkan beberapa baris secara
+              menurun (vertikal) pada sel tabel.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 2: Formulir HTML (&lt;form&gt;) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >02</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Formulir HTML (&lt;form&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Tag
+          <code
+            class="code-font bg-slate-100 text-sky-600 px-1.5 py-0.5 rounded"
+            >&lt;form&gt;</code
+          >
+          bertindak sebagai wadah pembungkus komponen input untuk dikirimkan ke
+          server backend.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> form.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-indigo-600 font-semibold">&lt;form</span> <span class="text-amber-600">action</span>=<span class="text-emerald-600">"simpan.php"</span> <span class="text-amber-600">method</span>=<span class="text-emerald-600">"POST"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;label</span> <span class="text-amber-600">for</span>=<span class="text-emerald-600">"username"</span><span class="text-indigo-600 font-semibold">&gt;</span>Username:<span class="text-indigo-600 font-semibold">&lt;/label&gt;&lt;br&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"text"</span> <span class="text-amber-600">id</span>=<span class="text-emerald-600">"username"</span> <span class="text-amber-600">name</span>=<span class="text-emerald-600">"username"</span> <span class="text-amber-600">placeholder</span>=<span class="text-emerald-600">"Masukkan username"</span><span class="text-indigo-600 font-semibold">&gt;&lt;br&gt;&lt;br&gt;</span>
+
+  <span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"submit"</span><span class="text-indigo-600 font-semibold">&gt;</span>Kirim<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/form&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/form.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow flex flex-col justify-center text-slate-800 text-sm"
+            >
+              <form class="space-y-3">
+                <div>
+                  <label
+                    for="username"
+                    class="block text-xs font-semibold text-slate-700 mb-1"
+                    >Username:</label
+                  >
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    class="border border-slate-300 rounded px-3 py-1.5 text-xs w-full max-w-xs focus:outline-none focus:border-sky-500"
+                    placeholder="Masukkan username"
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="bg-indigo-600 text-white text-xs px-4 py-2 rounded font-semibold hover:bg-indigo-700"
+                >
+                  Kirim
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Atribut Form -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan
+            Atribut Utama Elemen Form
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>action:</strong> Menentukan URL/file tujuan pemrosesan
+              data ketika form dikirimkan.
+            </li>
+            <li>
+              <strong>method:</strong> Metode pengiriman HTTP data, yaitu
+              <code class="code-font text-sky-600">GET</code> (data terlihat di
+              URL) atau <code class="code-font text-sky-600">POST</code> (data
+              dikirim di balik layar secara aman).
+            </li>
+            <li>
+              <strong>name:</strong> Kunci identifikasi variabel data yang
+              ditangkap oleh server.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 3: Elemen Input & Button -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >03</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Elemen Input (&lt;input&gt;) & Button (&lt;button&gt;)
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Atribut <code class="code-font">type</code> mendefinisikan bentuk
+          serta jenis kontrol masukan data dari pengguna.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> input.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"text"</span> <span class="text-amber-600">placeholder</span>=<span class="text-emerald-600">"Nama Lengkap"</span><span class="text-indigo-600 font-semibold">&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"password"</span> <span class="text-amber-600">placeholder</span>=<span class="text-emerald-600">"Kata Sandi"</span><span class="text-indigo-600 font-semibold">&gt;&lt;br&gt;&lt;br&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"radio"</span> <span class="text-amber-600">name</span>=<span class="text-emerald-600">"gender"</span> <span class="text-amber-600">checked</span><span class="text-indigo-600 font-semibold">&gt;</span> Laki-laki
+<span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"radio"</span> <span class="text-amber-600">name</span>=<span class="text-emerald-600">"gender"</span><span class="text-indigo-600 font-semibold">&gt;</span> Perempuan<span class="text-indigo-600 font-semibold">&lt;br&gt;&lt;br&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"checkbox"</span> <span class="text-amber-600">checked</span><span class="text-indigo-600 font-semibold">&gt;</span> Saya menyetujui syarat &amp; ketentuan<span class="text-indigo-600 font-semibold">&lt;br&gt;&lt;br&gt;</span>
+
+<span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"submit"</span><span class="text-indigo-600 font-semibold">&gt;</span>Simpan Data<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/input.html</span>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-white flex-grow space-y-3 text-slate-800 text-sm"
+            >
+              <div>
+                <input
+                  type="text"
+                  placeholder="Nama Lengkap"
+                  class="border border-slate-300 rounded px-3 py-1.5 text-xs w-full max-w-xs"
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  placeholder="Kata Sandi"
+                  class="border border-slate-300 rounded px-3 py-1.5 text-xs w-full max-w-xs"
+                />
+              </div>
+              <div class="flex items-center gap-4 text-xs">
+                <label class="flex items-center gap-1"
+                  ><input type="radio" name="gender" checked /> Laki-laki</label
+                >
+                <label class="flex items-center gap-1"
+                  ><input type="radio" name="gender" /> Perempuan</label
+                >
+              </div>
+              <div class="flex items-center gap-2 text-xs">
+                <input type="checkbox" id="c-demo" checked />
+                <label for="c-demo">Saya menyetujui syarat & ketentuan</label>
+              </div>
+              <button
+                type="button"
+                class="bg-emerald-600 text-white text-xs px-4 py-2 rounded font-semibold hover:bg-emerald-700"
+              >
+                Simpan Data
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Tipe Input -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Tipe-Tipe Input &
+            Tombol
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <span class="font-bold text-slate-800 border-b pb-0.5 block"
+                >Tipe-Tipe Input</span
+              >
+              <ul class="list-disc list-inside space-y-1 text-slate-600">
+                <li>
+                  <code class="code-font text-sky-600">text</code>: Isian teks
+                  satu baris biasa.
+                </li>
+                <li>
+                  <code class="code-font text-sky-600">password</code>: Teks
+                  tersembunyi berwujud bulatan/bintang.
+                </li>
+                <li>
+                  <code class="code-font text-sky-600">radio</code>: Memilih 1
+                  opsi tunggal dari beberapa pilihan.
+                </li>
+                <li>
+                  <code class="code-font text-sky-600">checkbox</code>: Memilih
+                  beberapa opsi centang bersamaan.
+                </li>
+              </ul>
+            </div>
+            <div class="space-y-1.5">
+              <span class="font-bold text-slate-800 border-b pb-0.5 block"
+                >Tipe Tombol (&lt;button&gt;)</span
+              >
+              <ul class="list-disc list-inside space-y-1 text-slate-600">
+                <li>
+                  <code class="code-font text-sky-600">submit</code>:
+                  Mengirimkan seluruh isi form ke server.
+                </li>
+                <li>
+                  <code class="code-font text-sky-600">reset</code>:
+                  Mengosongkan/mengembalikan form ke keadaan awal.
+                </li>
+                <li>
+                  <code class="code-font text-sky-600">button</code>: Tombol
+                  netral untuk aksi script JavaScript.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Studi Kasus Interaktif (Form Pendaftaran) -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >04</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Studi Kasus: Form Pendaftaran
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Penggabungan pilihan dropdown (<code class="code-font"
+            >&lt;select&gt;</code
+          >), teks multi-baris (<code class="code-font">&lt;textarea&gt;</code
+          >), serta kontrol tombol ke dalam formulir pendaftaran.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Visual Kode Light Mode -->
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i>
+                pendaftaran.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50"
+            ><code><span class="text-indigo-600 font-semibold">&lt;form&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;label&gt;</span>Jurusan:<span class="text-indigo-600 font-semibold">&lt;/label&gt;&lt;br&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;select</span> <span class="text-amber-600">name</span>=<span class="text-emerald-600">"jurusan"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;option&gt;</span>Teknik Mekatronika<span class="text-indigo-600 font-semibold">&lt;/option&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;option&gt;</span>Teknik Kimia Industri<span class="text-indigo-600 font-semibold">&lt;/option&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;/select&gt;&lt;br&gt;&lt;br&gt;</span>
+
+  <span class="text-indigo-600 font-semibold">&lt;label&gt;</span>Alamat Lengkap:<span class="text-indigo-600 font-semibold">&lt;/label&gt;&lt;br&gt;</span>
+  <span class="text-indigo-600 font-semibold">&lt;textarea</span> <span class="text-amber-600">rows</span>=<span class="text-emerald-600">"3"</span> <span class="text-amber-600">placeholder</span>=<span class="text-emerald-600">"Tuliskan alamat rumah..."</span><span class="text-indigo-600 font-semibold">&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;</span>
+
+  <span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"submit"</span><span class="text-indigo-600 font-semibold">&gt;</span>Daftar Sekarang<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/form&gt;</span></code></pre>
+          </div>
+
+          <!-- Visual Web Browser -->
+          <div class="browser-window flex flex-col">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="browser-dot bg-rose-400"></span>
+                <span class="browser-dot bg-amber-400"></span>
+                <span class="browser-dot bg-emerald-400"></span>
+              </div>
+              <div class="browser-address-bar">
+                <i class="fa-solid fa-globe text-slate-400"></i>
+                <span>http://localhost:5500/pendaftaran.html</span>
+              </div>
+            </div>
+            <div class="p-6 bg-white flex-grow text-slate-900 space-y-3">
+              <form class="space-y-3">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1"
+                    >Jurusan:</label
+                  >
+                  <select
+                    class="border border-slate-300 rounded px-3 py-1.5 text-xs w-full max-w-xs bg-white"
+                  >
+                    <option>Teknik Mekatronika</option>
+                    <option>Teknik Kimia Industri</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1"
+                    >Alamat Lengkap:</label
+                  >
+                  <textarea
+                    rows="3"
+                    placeholder="Tuliskan alamat rumah..."
+                    class="border border-slate-300 rounded p-2 text-xs w-full focus:outline-none focus:border-sky-500"
+                  ></textarea>
+                </div>
+                <button
+                  type="button"
+                  class="bg-indigo-600 text-white text-xs px-4 py-2 rounded font-semibold hover:bg-indigo-700"
+                >
+                  Daftar Sekarang
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penjelasan Komponen Pendukung (Format List Sederhana) -->
+        <div
+          class="mt-6 bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-3"
+        >
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-sky-600"></i> Komponen
+            Pendukung Input HTML
+          </h4>
+          <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>&lt;select&gt; &amp; &lt;option&gt;:</strong> Membuat
+              daftar pilihan dropdown terisolasi tanpa memakan area layar yang
+              luas.
+            </li>
+            <li>
+              <strong>&lt;textarea&gt;:</strong> Area pengisian teks multi-baris
+              yang cocok digunakan untuk masukan alamat, pesan, atau catatan.
+            </li>
+            <li>
+              <strong>placeholder:</strong> Atribut pembantu yang menampilkan
+              petunjuk samar sebelum pengguna mengetikkan isi input.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="2.1.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Modul 2.1
+        </a>
+        <a
+          href="2.3.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Modul 2.3 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
