@@ -545,7 +545,7 @@
         </div>
         <p class="text-slate-600 text-sm mb-6">
           Penggabungan seluruh materi (Selector, Warna, Font, Margin, Padding,
-          dan Border) dalam pembuatan kartu profil.
+          Border, dan Width) dalam pembuatan kartu profil.
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -587,6 +587,7 @@
             <pre
               class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 flex-grow"
             ><code><span class="text-indigo-600 font-semibold">.profile-card</span> {
+  <span class="text-amber-600">width</span>: <span class="text-emerald-600">220px</span>;
   <span class="text-amber-600">padding</span>: <span class="text-emerald-600">20px</span>;
   <span class="text-amber-600">border</span>: <span class="text-emerald-600">1px solid #cbd5e1</span>;
   <span class="text-amber-600">border-radius</span>: <span class="text-emerald-600">12px</span>;
@@ -632,7 +633,7 @@
             >
               <!-- REAL CARD RESULT -->
               <div
-                class="w-full max-w-[220px] p-5 bg-white border border-slate-300 rounded-xl text-center shadow-xs"
+                class="w-[220px] p-5 bg-white border border-slate-300 rounded-xl text-center shadow-xs"
               >
                 <img
                   src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop"
@@ -659,6 +660,11 @@
             Ringkas CSS
           </h4>
           <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>Lebar Kartu:</strong> Properti
+              <code class="code-font text-sky-600">width: 220px</code>
+              menentukan lebar pasti dari kontainer kartu profil.
+            </li>
             <li>
               <strong>Foto Lingkaran:</strong> Properti
               <code class="code-font text-sky-600">border-radius: 50%</code>

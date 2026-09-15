@@ -518,6 +518,7 @@
             <pre
               class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 h-56"
             ><code><span class="text-indigo-600 font-semibold">.parent</span> {
+  <span class="text-amber-600">width</span>: <span class="text-emerald-600">200px</span>;
   <span class="text-amber-600">position</span>: <span class="text-emerald-600">relative</span>;
   <span class="text-amber-600">padding</span>: <span class="text-emerald-600">20px</span>;
   <span class="text-amber-600">background</span>: <span class="text-emerald-600">#f8fafc</span>;
@@ -548,11 +549,11 @@
               class="p-4 bg-white flex-grow flex items-center justify-center text-xs"
             >
               <div
-                class="relative p-6 bg-slate-100 rounded-lg border border-slate-200 w-full text-slate-700 font-medium"
+                class="relative p-6 bg-slate-100 rounded-lg border border-slate-200 w-[200px] text-slate-700 font-medium text-center sm:text-left"
               >
                 Kartu Induk
                 <span
-                  class="absolute top-2 right-2 bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-2xs"
+                  class="absolute top-1.5 right-1.5 bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-2xs"
                 >
                   Baru
                 </span>
@@ -603,7 +604,7 @@
           </h3>
         </div>
         <p class="text-slate-600 text-sm mb-6">
-          Penerapan gabungan Flexbox, Grid, dan Position dalam pembuatan
+          Penerapan gabungan Flexbox, Grid, Position, dan Width dalam pembuatan
           komponen kartu produk e-commerce yang presisi.
         </p>
 
@@ -645,6 +646,7 @@
             <pre
               class="p-4 text-xs code-font text-slate-800 leading-relaxed overflow-x-auto bg-slate-50 flex-grow"
             ><code><span class="text-indigo-600 font-semibold">.product-card</span> {
+  <span class="text-amber-600">width</span>: <span class="text-emerald-600">220px</span>;
   <span class="text-amber-600">position</span>: <span class="text-emerald-600">relative</span>;
   <span class="text-amber-600">padding</span>: <span class="text-emerald-600">16px</span>;
   <span class="text-amber-600">border</span>: <span class="text-emerald-600">1px solid #cbd5e1</span>;
@@ -685,12 +687,12 @@
             <div
               class="p-6 bg-slate-50 flex-grow flex items-center justify-center"
             >
-              <!-- REAL CARD RESULT -->
+              <!-- REAL CARD RESULT SINKRON DENGAN CSS width: 220px -->
               <div
-                class="relative w-full max-w-[220px] p-4 bg-white border border-slate-300 rounded-xl shadow-xs"
+                class="relative w-[220px] p-4 bg-white border border-slate-300 rounded-xl shadow-xs"
               >
                 <span
-                  class="absolute top-6 left-6 bg-rose-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded shadow-xs z-10"
+                  class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded shadow-xs z-10"
                 >
                   DISKON
                 </span>
@@ -699,10 +701,12 @@
                   alt="iPhone 17 Pro Max"
                   class="w-full h-28 rounded-lg mx-auto mb-3 object-cover border border-slate-100"
                 />
-                <h3 class="text-xs font-bold text-slate-800 leading-snug mb-1">
+                <h3
+                  class="judul text-xs font-bold text-slate-800 leading-snug mb-1"
+                >
                   iPhone 17 Pro Max
                 </h3>
-                <p class="text-indigo-600 text-xs font-extrabold">
+                <p class="harga text-indigo-600 text-xs font-extrabold">
                   Rp 24.999.000
                 </p>
               </div>
@@ -719,6 +723,11 @@
             Integrasi Layout Modern
           </h4>
           <ul class="list-disc list-inside space-y-1.5 text-slate-600">
+            <li>
+              <strong>Penetapan Lebar Kartu:</strong> Properti
+              <code class="code-font text-sky-600">width: 220px</code>
+              menetapkan lebar persis kartu produk agar tampilan konsisten.
+            </li>
             <li>
               <strong>Position Absolute Tag:</strong> Label
               <code class="code-font text-sky-600">DISKON</code> diposisikan
