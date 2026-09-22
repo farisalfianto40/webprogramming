@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.5 Studi Kasus CSS - Web Programming 4.0</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE 10+ / Edge */
+        user-select: none; /* Standard */
+      }
+
+      .code-font {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Styling Kartu */
+      .module-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .badge-number {
+        background: rgba(2, 132, 199, 0.08);
+        color: #0284c7;
+      }
+
+      /* Container Wireframe Mockup */
+      .wireframe-container {
+        border: 2px solid #334155;
+        border-radius: 20px;
+        background: #ffffff;
+        padding: 14px;
+        position: relative;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Header Window Browser */
+      .wireframe-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 10px;
+        border-bottom: 1.5px solid #cbd5e1;
+        margin-bottom: 16px;
+        color: #64748b;
+      }
+
+      .wireframe-search {
+        border: 1.5px solid #94a3b8;
+        border-radius: 20px;
+        height: 24px;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
+        background-color: #f8fafc;
+      }
+
+      /* Mockup Box Styling */
+      .wireframe-hero-box {
+        border: 2px dashed #0284c7;
+        border-radius: 8px;
+        background-color: #e0f2fe;
+        padding: 10px 8px;
+        text-align: center;
+      }
+
+      /* Bar Sederhana Wireframe */
+      .wf-line {
+        height: 3px;
+        border-radius: 2px;
+      }
+
+      /* Label Vertikal Kanan Wireframe */
+      .wf-vertical-label {
+        font-weight: 800;
+        font-size: 9px;
+        letter-spacing: 0.05em;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        text-align: center;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Animasi CSS Staggered Fade & Slide In */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .anim-wf-item {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease-out forwards;
+      }
+
+      /* Delay Beruntun Tiap Elemen Wireframe */
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.3s;
+      }
+      .delay-3 {
+        animation-delay: 0.5s;
+      }
+      .delay-4 {
+        animation-delay: 0.7s;
+      }
+      .delay-5 {
+        animation-delay: 0.9s;
+      }
+      .delay-6 {
+        animation-delay: 1.1s;
+      }
+      .delay-7 {
+        animation-delay: 1.3s;
+      }
+
+      @keyframes pulseGlowBorder {
+        0% {
+          border-color: #334155;
+        }
+        50% {
+          border-color: #0284c7;
+        }
+        100% {
+          border-color: #334155;
+        }
+      }
+      .anim-wireframe-active {
+        animation: pulseGlowBorder 3s infinite;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen pb-16">
+    <!-- Header Portal -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-200"
+          >
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-slate-800 leading-tight">
+              Web Programming 4.0
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">
+              SMK SMTI Yogyakarta
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pt-8 space-y-10">
+      <!-- Title Banner -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6"
+      >
+        <div>
+          <div
+            class="flex items-center gap-2 text-xs font-bold text-sky-600 uppercase tracking-wider mb-1"
+          >
+            <span>Modul 03</span>
+            <span>•</span>
+            <span>CSS</span>
+          </div>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            3.5 Studi Kasus CSS: Styling Landing Page Produk
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Panduan instruksi tugas penataan layout, visual box model, dan
+            perancangan gaya responsif halaman web.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section: Studi Kasus CSS -->
+      <section class="module-card p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <h3 class="text-xl font-bold text-slate-800">
+            STUDI KASUS 2: STYLING LANDING PAGE PRODUK
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Kolom Kiri: Deskripsi & Instruksi Pengerjaan -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- Deskripsi -->
+            <div
+              class="bg-sky-50/60 border border-sky-100 rounded-xl p-4 text-xs text-sky-900 leading-relaxed"
+            >
+              <span
+                class="font-bold block mb-1 text-sky-700 uppercase tracking-wider text-[10px]"
+              >
+                Deskripsi Tugas
+              </span>
+              Membuat dan menghias halaman
+              <strong>Landing Page Produk / Katalog Penjualan Sederhana</strong>
+              (misalnya: Produk Kedai Kopi, Merchandise Sekolah, atau Gadget)
+              menggunakan aturan CSS agar memiliki tampilan visual modern, rapi,
+              dan terstruktur.
+            </div>
+
+            <!-- Instruksi Pengerjaan -->
+            <div class="space-y-3">
+              <h4
+                class="font-bold text-slate-800 text-sm flex items-center gap-2"
+              >
+                <i class="fa-solid fa-list-check text-indigo-600"></i> Instruksi
+                Pengerjaan:
+              </h4>
+              <p class="text-xs text-slate-600">
+                Buatlah file CSS terpisah (<code
+                  class="code-font text-indigo-600 font-semibold"
+                  >style.css</code
+                >) atau gunakan tag
+                <code class="code-font text-indigo-600 font-semibold"
+                  >&lt;style&gt;</code
+                >
+                untuk mengatur elemen-elemen berikut:
+              </p>
+
+              <ol
+                class="list-decimal list-inside text-xs text-slate-700 space-y-2 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200"
+              >
+                <li>
+                  <strong>CSS Selectors & Typography:</strong> Atur jenis font
+                  (<code class="code-font text-indigo-600 font-semibold"
+                    >font-family</code
+                  >), ukuran, warna teks, dan tingkat ketebalan (<code
+                    class="code-font text-indigo-600 font-semibold"
+                    >font-weight</code
+                  >) pada judul serta deskripsi produk.
+                </li>
+                <li>
+                  <strong>Color Palette:</strong> Tentukan kombinasi warna latar
+                  belakang (<code
+                    class="code-font text-indigo-600 font-semibold"
+                    >background-color</code
+                  >) dan warna aksen tombol/elemen yang harmonis.
+                </li>
+                <li>
+                  <strong>Box Model:</strong> Terapkan pengaturan jarak yang
+                  presisi menggunakan
+                  <code class="code-font text-indigo-600 font-semibold"
+                    >margin</code
+                  >,
+                  <code class="code-font text-indigo-600 font-semibold"
+                    >padding</code
+                  >,
+                  <code class="code-font text-indigo-600 font-semibold"
+                    >border</code
+                  >, serta
+                  <code class="code-font text-indigo-600 font-semibold"
+                    >border-radius</code
+                  >
+                  pada komponen kartu produk (card).
+                </li>
+                <li>
+                  <strong>Flexbox / Grid Layout:</strong> Susun tata letak
+                  komponen (*Navbar*, *Katalog Kartu Produk*, dan *Footer*) agar
+                  sejajar secara rapi.
+                </li>
+                <li>
+                  <strong>Pseudo-classes & Transition:</strong> Tambahkan efek
+                  interaktif saat kursor mengarah ke tombol beli atau kartu
+                  produk (<code class="code-font text-indigo-600 font-semibold"
+                    >:hover</code
+                  >
+                  dan
+                  <code class="code-font text-indigo-600 font-semibold"
+                    >transition</code
+                  >).
+                </li>
+                <li>
+                  <strong>Responsive Web Design:</strong> Gunakan media query
+                  (<code class="code-font text-indigo-600 font-semibold"
+                    >@media</code
+                  >) agar tampilan layout katalog dapat menyesuaikan ukuran
+                  layar perangkat (HP & Laptop).
+                </li>
+              </ol>
+            </div>
+
+            <!-- Catatan Tambahan -->
+            <div
+              class="bg-amber-50 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-900 leading-relaxed"
+            >
+              <span
+                class="font-bold block mb-1 text-amber-800 flex items-center gap-1.5"
+              >
+                <i class="fa-solid fa-circle-info"></i> Catatan Pengerjaan:
+              </span>
+              <ul class="list-disc list-inside space-y-1 text-amber-800/90">
+                <li>Bebas menentukan jenis produk yang ingin dipromosikan.</li>
+                <li>
+                  Utamakan kerapian struktur pemanggilan CSS (*clean code* &
+                  konsistensi variabel warna).
+                </li>
+                <li>
+                  Gunakan inspect element pada browser untuk membantu
+                  *debugging* aturan CSS Box Model.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Skema Wireframe Animasi CSS Berwarna -->
+          <div class="lg:col-span-5 space-y-3">
+            <h4
+              class="font-bold text-slate-800 text-sm flex items-center gap-2"
+            >
+              <i class="fa-solid fa-object-group text-sky-600"></i> Skema Mockup
+              Visual Layout CSS
+            </h4>
+
+            <!-- Frame Wireframe Eksternal -->
+            <div
+              class="wireframe-container anim-wireframe-active max-w-[380px] mx-auto"
+            >
+              <!-- Header Browser -->
+              <div class="wireframe-header">
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+                <div class="wireframe-search">
+                  <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
+                </div>
+                <i class="fa-solid fa-download text-xs"></i>
+                <i class="fa-solid fa-bars text-xs"></i>
+              </div>
+
+              <!-- Content Area + Vertical Labels Layout -->
+              <div class="grid grid-cols-12 gap-3 items-stretch">
+                <!-- Area Render Utama Elemen Berwarna -->
+                <div class="col-span-9 space-y-4 py-1">
+                  <!-- 1. NAVBAR (Flexbox Layout) -->
+                  <div
+                    class="anim-wf-item delay-1 flex items-center justify-between bg-slate-800 text-white p-2 rounded-lg h-9"
+                  >
+                    <span class="text-[9px] font-bold tracking-wider"
+                      >NAVBAR</span
+                    >
+                    <div class="flex gap-1">
+                      <div class="w-3 h-1.5 bg-slate-400 rounded"></div>
+                      <div class="w-3 h-1.5 bg-slate-400 rounded"></div>
+                    </div>
+                  </div>
+
+                  <!-- 2. HERO BANNER (Typography & Spacing) -->
+                  <div
+                    class="anim-wf-item delay-2 wireframe-hero-box space-y-1.5 min-h-[72px] flex flex-col justify-center"
+                  >
+                    <div class="wf-line w-3/4 mx-auto bg-sky-600"></div>
+                    <div class="wf-line w-1/2 mx-auto bg-sky-400"></div>
+                    <div class="pt-1">
+                      <span
+                        class="inline-block bg-sky-600 text-white text-[8px] px-2 py-0.5 rounded font-bold"
+                        >HERO BTN</span
+                      >
+                    </div>
+                  </div>
+
+                  <!-- 3. BOX MODEL & BORDER RADIUS -->
+                  <div
+                    class="anim-wf-item delay-3 bg-indigo-50 border-2 border-indigo-300 rounded-xl p-2.5 space-y-1.5 min-h-[60px] flex flex-col justify-center"
+                  >
+                    <div class="wf-line w-1/3 bg-indigo-600"></div>
+                    <div class="wf-line w-full bg-indigo-300"></div>
+                    <div class="wf-line w-4/5 bg-indigo-300"></div>
+                  </div>
+
+                  <!-- 4. GRID CARDS (Flex/Grid Component) -->
+                  <div
+                    class="anim-wf-item delay-4 grid grid-cols-2 gap-2 min-h-[52px]"
+                  >
+                    <div
+                      class="border-2 border-emerald-400 bg-emerald-50 rounded-lg p-2 space-y-1 flex flex-col justify-center"
+                    >
+                      <div class="wf-line w-2/3 bg-emerald-600"></div>
+                      <div class="wf-line w-full bg-emerald-300"></div>
+                    </div>
+                    <div
+                      class="border-2 border-emerald-400 bg-emerald-50 rounded-lg p-2 space-y-1 flex flex-col justify-center"
+                    >
+                      <div class="wf-line w-2/3 bg-emerald-600"></div>
+                      <div class="wf-line w-full bg-emerald-300"></div>
+                    </div>
+                  </div>
+
+                  <!-- 5. HOVER EFFECTS & TRANSITION -->
+                  <div
+                    class="anim-wf-item delay-5 bg-amber-500 text-white p-2 rounded-lg text-center font-bold text-[9px] shadow-md border border-amber-600 h-8 flex items-center justify-center"
+                  >
+                    HOVER EFFECT / BUTTON
+                  </div>
+
+                  <!-- 6. RESPONSIVE MEDIA QUERY -->
+                  <div
+                    class="anim-wf-item delay-6 bg-teal-50 border border-teal-200 p-2 rounded-lg space-y-1 text-center min-h-[44px] flex flex-col justify-center"
+                  >
+                    <div class="wf-line w-1/2 mx-auto bg-teal-600"></div>
+                    <div class="wf-line w-3/4 mx-auto bg-teal-400"></div>
+                  </div>
+
+                  <!-- 7. FOOTER STYLING -->
+                  <div
+                    class="anim-wf-item delay-7 bg-slate-900 text-slate-300 p-2 rounded-lg text-center h-8 flex items-center justify-center"
+                  >
+                    <div class="wf-line w-1/3 mx-auto bg-slate-600"></div>
+                  </div>
+                </div>
+
+                <!-- Area Label Vertikal Sisi Kanan -->
+                <div
+                  class="col-span-3 flex flex-col justify-between py-1 items-center border-l-2 border-dashed border-slate-200"
+                >
+                  <span
+                    class="wf-vertical-label text-slate-800 font-extrabold h-9"
+                    >NAVBAR</span
+                  >
+                  <span
+                    class="wf-vertical-label text-sky-600 font-extrabold h-[72px]"
+                    >TYPOGRAPHY</span
+                  >
+                  <span
+                    class="wf-vertical-label text-indigo-600 font-extrabold h-[60px]"
+                    >BOX MODEL</span
+                  >
+                  <span
+                    class="wf-vertical-label text-emerald-600 font-extrabold h-[52px]"
+                    >CSS GRID</span
+                  >
+                  <span
+                    class="wf-vertical-label text-amber-600 font-extrabold h-8"
+                    >HOVER</span
+                  >
+                  <span
+                    class="wf-vertical-label text-teal-600 font-extrabold h-[44px]"
+                    >MEDIA QUERY</span
+                  >
+                  <span
+                    class="wf-vertical-label text-slate-900 font-extrabold h-8"
+                    >FOOTER</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <div
+        class="mt-8 flex items-center justify-between pt-4 border-slate-200/80"
+      >
+        <a
+          href="3.5.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition flex items-center gap-1 text-slate-600 shadow-2xs"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Modul 3.4
+        </a>
+        <a
+          href="index.html"
+          class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
+        >
+          Selesai <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

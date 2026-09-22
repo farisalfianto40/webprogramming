@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3.5 Studi Kasus CSS - Web Programming 4.0</title>
+    <title>3.4 Proyek CSS - Web Programming 4.0</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -19,7 +19,6 @@
         background-color: #f8fafc;
         color: #0f172a;
 
-        /* Mencegah seleksi teks (Anti-Select/Copas) */
         -webkit-user-select: none; /* Safari */
         -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* IE 10+ / Edge */
@@ -30,7 +29,6 @@
         font-family: "Fira Code", monospace;
       }
 
-      /* Styling Kartu */
       .module-card {
         background: #ffffff;
         border: 1px solid #e2e8f0;
@@ -44,120 +42,155 @@
         color: #0284c7;
       }
 
-      /* Container Wireframe Mockup */
-      .wireframe-container {
-        border: 2px solid #334155;
-        border-radius: 20px;
-        background: #ffffff;
-        padding: 14px;
-        position: relative;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      .code-window {
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+        border: 1px solid #cbd5e1;
       }
 
-      /* Header Window Browser */
-      .wireframe-header {
+      .code-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding-bottom: 10px;
-        border-bottom: 1.5px solid #cbd5e1;
-        margin-bottom: 16px;
-        color: #64748b;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
       }
 
-      .wireframe-search {
-        border: 1.5px solid #94a3b8;
-        border-radius: 20px;
-        height: 24px;
+      .code-tab {
+        background-color: #ffffff;
+        color: #0284c7;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem 0.375rem 0 0;
+        border: 1px solid #e2e8f0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-family: "Fira Code", monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .browser-window {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        border: 1px solid #cbd5e1;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      .browser-header {
+        background-color: #f1f5f9;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .browser-dots {
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .browser-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .browser-address-bar {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
         flex-grow: 1;
         display: flex;
         align-items: center;
-        padding-left: 8px;
-        background-color: #f8fafc;
+        gap: 0.5rem;
       }
 
-      /* Mockup Box Styling */
-      .wireframe-hero-box {
-        border: 2px dashed #0284c7;
-        border-radius: 8px;
-        background-color: #e0f2fe;
-        padding: 10px 8px;
-        text-align: center;
+      /* CSS Custom Simulation Style */
+      .preview-container {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
       }
-
-      /* Bar Sederhana Wireframe */
-      .wf-line {
-        height: 3px;
-        border-radius: 2px;
-      }
-
-      /* Label Vertikal Kanan Wireframe */
-      .wf-vertical-label {
-        font-weight: 800;
-        font-size: 9px;
-        letter-spacing: 0.05em;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        text-align: center;
-        white-space: nowrap;
+      .preview-navbar {
+        background-color: #1e293b;
+        padding: 1rem;
+        border-radius: 0.5rem;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
       }
-
-      /* Animasi CSS Staggered Fade & Slide In */
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .preview-brand {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 1.1rem;
       }
-
-      .anim-wf-item {
-        opacity: 0;
-        animation: fadeInUp 0.5s ease-out forwards;
+      .preview-menu {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
       }
-
-      /* Delay Beruntun Tiap Elemen Wireframe */
-      .delay-1 {
-        animation-delay: 0.1s;
+      .preview-menu a {
+        color: #cbd5e1;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        transition: all 0.2s;
       }
-      .delay-2 {
-        animation-delay: 0.3s;
+      .preview-menu a:hover {
+        color: #ffffff;
+        background-color: #334155;
       }
-      .delay-3 {
-        animation-delay: 0.5s;
+      .preview-card {
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        border: 1px solid #e2e8f0;
       }
-      .delay-4 {
-        animation-delay: 0.7s;
+      .preview-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
       }
-      .delay-5 {
-        animation-delay: 0.9s;
+      .preview-table th,
+      .preview-table td {
+        padding: 0.75rem;
+        border: 1px solid #e2e8f0;
+        text-align: left;
       }
-      .delay-6 {
-        animation-delay: 1.1s;
+      .preview-table th {
+        background-color: #f1f5f9;
+        color: #1e293b;
       }
-      .delay-7 {
-        animation-delay: 1.3s;
+      .preview-btn {
+        background-color: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        font-weight: 600;
       }
-
-      @keyframes pulseGlowBorder {
-        0% {
-          border-color: #334155;
-        }
-        50% {
-          border-color: #0284c7;
-        }
-        100% {
-          border-color: #334155;
-        }
+      .preview-btn:hover {
+        background-color: #0369a1;
       }
-      .anim-wireframe-active {
-        animation: pulseGlowBorder 3s infinite;
+      .preview-input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 0.375rem;
+        margin-top: 0.25rem;
       }
     </style>
   </head>
@@ -202,286 +235,645 @@
           <h2
             class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
           >
-            3.5 Studi Kasus CSS: Styling Landing Page Produk
+            3.4 Proyek CSS Integratif Perpustakaan
           </h2>
           <p class="text-slate-500 text-sm mt-1">
-            Panduan instruksi tugas penataan layout, visual box model, dan
-            perancangan gaya responsif halaman web.
+            Penerapan Styling CSS Modern, Flexbox Layout, Komponen Card, Tabel
+            Modern, dan Form Stylings untuk Web Perpustakaan.
           </p>
         </div>
       </div>
 
-      <!-- Section: Studi Kasus CSS -->
+      <!-- SECTION 1: TAMPILAN HASIL WEB INTERAKTIF -->
       <section class="module-card p-6 sm:p-8">
-        <div class="flex items-center gap-3 mb-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >01</span
+          >
           <h3 class="text-xl font-bold text-slate-800">
-            STUDI KASUS 2: STYLING LANDING PAGE PRODUK
+            Pratinjau Hasil Web Interaktif
           </h3>
         </div>
+        <p class="text-slate-600 text-sm mb-6">
+          Klik menu navigasi di dalam simulasi browser untuk melihat hasil
+          penataan CSS pada setiap halaman (Beranda, Daftar Buku, dan Kontak).
+        </p>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <!-- Kolom Kiri: Deskripsi & Instruksi Pengerjaan -->
-          <div class="lg:col-span-7 space-y-6">
-            <!-- Deskripsi -->
-            <div
-              class="bg-sky-50/60 border border-sky-100 rounded-xl p-4 text-xs text-sky-900 leading-relaxed"
-            >
-              <span
-                class="font-bold block mb-1 text-sky-700 uppercase tracking-wider text-[10px]"
-              >
-                Deskripsi Tugas
-              </span>
-              Membuat dan menghias halaman
-              <strong>Landing Page Produk / Katalog Penjualan Sederhana</strong>
-              (misalnya: Produk Kedai Kopi, Merchandise Sekolah, atau Gadget)
-              menggunakan aturan CSS agar memiliki tampilan visual modern, rapi,
-              dan terstruktur.
+        <!-- Browser Simulation -->
+        <div class="browser-window flex flex-col">
+          <div class="browser-header">
+            <div class="browser-dots">
+              <span class="browser-dot bg-rose-400"></span>
+              <span class="browser-dot bg-amber-400"></span>
+              <span class="browser-dot bg-emerald-400"></span>
             </div>
-
-            <!-- Instruksi Pengerjaan -->
-            <div class="space-y-3">
-              <h4
-                class="font-bold text-slate-800 text-sm flex items-center gap-2"
-              >
-                <i class="fa-solid fa-list-check text-indigo-600"></i> Instruksi
-                Pengerjaan:
-              </h4>
-              <p class="text-xs text-slate-600">
-                Buatlah file CSS terpisah (<code
-                  class="code-font text-indigo-600 font-semibold"
-                  >style.css</code
-                >) atau gunakan tag
-                <code class="code-font text-indigo-600 font-semibold"
-                  >&lt;style&gt;</code
-                >
-                untuk mengatur elemen-elemen berikut:
-              </p>
-
-              <ol
-                class="list-decimal list-inside text-xs text-slate-700 space-y-2 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200"
-              >
-                <li>
-                  <strong>CSS Selectors & Typography:</strong> Atur jenis font
-                  (<code class="code-font text-indigo-600 font-semibold"
-                    >font-family</code
-                  >), ukuran, warna teks, dan tingkat ketebalan (<code
-                    class="code-font text-indigo-600 font-semibold"
-                    >font-weight</code
-                  >) pada judul serta deskripsi produk.
-                </li>
-                <li>
-                  <strong>Color Palette:</strong> Tentukan kombinasi warna latar
-                  belakang (<code
-                    class="code-font text-indigo-600 font-semibold"
-                    >background-color</code
-                  >) dan warna aksen tombol/elemen yang harmonis.
-                </li>
-                <li>
-                  <strong>Box Model:</strong> Terapkan pengaturan jarak yang
-                  presisi menggunakan
-                  <code class="code-font text-indigo-600 font-semibold"
-                    >margin</code
-                  >,
-                  <code class="code-font text-indigo-600 font-semibold"
-                    >padding</code
-                  >,
-                  <code class="code-font text-indigo-600 font-semibold"
-                    >border</code
-                  >, serta
-                  <code class="code-font text-indigo-600 font-semibold"
-                    >border-radius</code
-                  >
-                  pada komponen kartu produk (card).
-                </li>
-                <li>
-                  <strong>Flexbox / Grid Layout:</strong> Susun tata letak
-                  komponen (*Navbar*, *Katalog Kartu Produk*, dan *Footer*) agar
-                  sejajar secara rapi.
-                </li>
-                <li>
-                  <strong>Pseudo-classes & Transition:</strong> Tambahkan efek
-                  interaktif saat kursor mengarah ke tombol beli atau kartu
-                  produk (<code class="code-font text-indigo-600 font-semibold"
-                    >:hover</code
-                  >
-                  dan
-                  <code class="code-font text-indigo-600 font-semibold"
-                    >transition</code
-                  >).
-                </li>
-                <li>
-                  <strong>Responsive Web Design:</strong> Gunakan media query
-                  (<code class="code-font text-indigo-600 font-semibold"
-                    >@media</code
-                  >) agar tampilan layout katalog dapat menyesuaikan ukuran
-                  layar perangkat (HP & Laptop).
-                </li>
-              </ol>
-            </div>
-
-            <!-- Catatan Tambahan -->
-            <div
-              class="bg-amber-50 border border-amber-200/80 rounded-xl p-4 text-xs text-amber-900 leading-relaxed"
-            >
-              <span
-                class="font-bold block mb-1 text-amber-800 flex items-center gap-1.5"
-              >
-                <i class="fa-solid fa-circle-info"></i> Catatan Pengerjaan:
-              </span>
-              <ul class="list-disc list-inside space-y-1 text-amber-800/90">
-                <li>Bebas menentukan jenis produk yang ingin dipromosikan.</li>
-                <li>
-                  Utamakan kerapian struktur pemanggilan CSS (*clean code* &
-                  konsistensi variabel warna).
-                </li>
-                <li>
-                  Gunakan inspect element pada browser untuk membantu
-                  *debugging* aturan CSS Box Model.
-                </li>
-              </ul>
+            <div class="browser-address-bar">
+              <i class="fa-solid fa-globe text-slate-400"></i>
+              <span id="browser-url">http://127.0.0.1:5500/index.html</span>
             </div>
           </div>
 
-          <!-- Kolom Kanan: Skema Wireframe Animasi CSS Berwarna -->
-          <div class="lg:col-span-5 space-y-3">
-            <h4
-              class="font-bold text-slate-800 text-sm flex items-center gap-2"
-            >
-              <i class="fa-solid fa-object-group text-sky-600"></i> Skema Mockup
-              Visual Layout CSS
-            </h4>
+          <div
+            class="p-6 bg-slate-100 preview-container space-y-6 text-xs min-h-[420px]"
+          >
+            <!-- Navigation Header (Styled with CSS Flexbox) -->
+            <div class="preview-navbar">
+              <div class="preview-brand">Perpustakaan SMTI</div>
+              <ul class="preview-menu">
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      switchTab('beranda');
+                      return false;
+                    "
+                    class="bg-sky-600 text-white rounded px-2 py-1"
+                    id="nav-beranda"
+                    >Beranda</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      switchTab('buku');
+                      return false;
+                    "
+                    id="nav-buku"
+                    >Daftar Buku</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      switchTab('kontak');
+                      return false;
+                    "
+                    id="nav-kontak"
+                    >Kontak</a
+                  >
+                </li>
+              </ul>
+            </div>
 
-            <!-- Frame Wireframe Eksternal -->
-            <div
-              class="wireframe-container anim-wireframe-active max-w-[380px] mx-auto"
-            >
-              <!-- Header Browser -->
-              <div class="wireframe-header">
-                <i class="fa-solid fa-arrow-left text-xs"></i>
-                <i class="fa-solid fa-arrow-right text-xs"></i>
-                <div class="wireframe-search">
-                  <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
-                </div>
-                <i class="fa-solid fa-download text-xs"></i>
-                <i class="fa-solid fa-bars text-xs"></i>
+            <!-- Page 1: Beranda (Default Active) -->
+            <div id="page-beranda" class="space-y-4">
+              <div
+                class="preview-card bg-indigo-900 text-white border-none py-8 px-6 rounded-xl"
+              >
+                <h1 class="text-2xl font-bold mb-2">
+                  Selamat Datang di Perpustakaan Digital
+                </h1>
+                <p class="text-slate-200 leading-relaxed max-w-2xl">
+                  Pusat literasi dan sumber belajar modern SMK SMTI Yogyakarta.
+                  Temukan ribuan koleksi buku, jurnal teknis, dan referensi
+                  akademik untuk menunjang kompetensi mekatronika dan teknologi.
+                </p>
+                <button
+                  onclick="switchTab('buku')"
+                  class="mt-4 preview-btn bg-sky-500 hover:bg-sky-600"
+                >
+                  Jelajahi Koleksi
+                </button>
               </div>
 
-              <!-- Content Area + Vertical Labels Layout -->
-              <div class="grid grid-cols-12 gap-3 items-stretch">
-                <!-- Area Render Utama Elemen Berwarna -->
-                <div class="col-span-9 space-y-4 py-1">
-                  <!-- 1. NAVBAR (Flexbox Layout) -->
-                  <div
-                    class="anim-wf-item delay-1 flex items-center justify-between bg-slate-800 text-white p-2 rounded-lg h-9"
-                  >
-                    <span class="text-[9px] font-bold tracking-wider"
-                      >NAVBAR</span
-                    >
-                    <div class="flex gap-1">
-                      <div class="w-3 h-1.5 bg-slate-400 rounded"></div>
-                      <div class="w-3 h-1.5 bg-slate-400 rounded"></div>
-                    </div>
-                  </div>
-
-                  <!-- 2. HERO BANNER (Typography & Spacing) -->
-                  <div
-                    class="anim-wf-item delay-2 wireframe-hero-box space-y-1.5 min-h-[72px] flex flex-col justify-center"
-                  >
-                    <div class="wf-line w-3/4 mx-auto bg-sky-600"></div>
-                    <div class="wf-line w-1/2 mx-auto bg-sky-400"></div>
-                    <div class="pt-1">
-                      <span
-                        class="inline-block bg-sky-600 text-white text-[8px] px-2 py-0.5 rounded font-bold"
-                        >HERO BTN</span
-                      >
-                    </div>
-                  </div>
-
-                  <!-- 3. BOX MODEL & BORDER RADIUS -->
-                  <div
-                    class="anim-wf-item delay-3 bg-indigo-50 border-2 border-indigo-300 rounded-xl p-2.5 space-y-1.5 min-h-[60px] flex flex-col justify-center"
-                  >
-                    <div class="wf-line w-1/3 bg-indigo-600"></div>
-                    <div class="wf-line w-full bg-indigo-300"></div>
-                    <div class="wf-line w-4/5 bg-indigo-300"></div>
-                  </div>
-
-                  <!-- 4. GRID CARDS (Flex/Grid Component) -->
-                  <div
-                    class="anim-wf-item delay-4 grid grid-cols-2 gap-2 min-h-[52px]"
-                  >
-                    <div
-                      class="border-2 border-emerald-400 bg-emerald-50 rounded-lg p-2 space-y-1 flex flex-col justify-center"
-                    >
-                      <div class="wf-line w-2/3 bg-emerald-600"></div>
-                      <div class="wf-line w-full bg-emerald-300"></div>
-                    </div>
-                    <div
-                      class="border-2 border-emerald-400 bg-emerald-50 rounded-lg p-2 space-y-1 flex flex-col justify-center"
-                    >
-                      <div class="wf-line w-2/3 bg-emerald-600"></div>
-                      <div class="wf-line w-full bg-emerald-300"></div>
-                    </div>
-                  </div>
-
-                  <!-- 5. HOVER EFFECTS & TRANSITION -->
-                  <div
-                    class="anim-wf-item delay-5 bg-amber-500 text-white p-2 rounded-lg text-center font-bold text-[9px] shadow-md border border-amber-600 h-8 flex items-center justify-center"
-                  >
-                    HOVER EFFECT / BUTTON
-                  </div>
-
-                  <!-- 6. RESPONSIVE MEDIA QUERY -->
-                  <div
-                    class="anim-wf-item delay-6 bg-teal-50 border border-teal-200 p-2 rounded-lg space-y-1 text-center min-h-[44px] flex flex-col justify-center"
-                  >
-                    <div class="wf-line w-1/2 mx-auto bg-teal-600"></div>
-                    <div class="wf-line w-3/4 mx-auto bg-teal-400"></div>
-                  </div>
-
-                  <!-- 7. FOOTER STYLING -->
-                  <div
-                    class="anim-wf-item delay-7 bg-slate-900 text-slate-300 p-2 rounded-lg text-center h-8 flex items-center justify-center"
-                  >
-                    <div class="wf-line w-1/3 mx-auto bg-slate-600"></div>
-                  </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div class="preview-card">
+                  <h3 class="font-bold text-sm text-slate-800 mb-1">
+                    Koleksi Lengkap
+                  </h3>
+                  <p class="text-slate-500 text-xs">
+                    Ribuan buku cetak dan e-book berkualitas tinggi.
+                  </p>
                 </div>
-
-                <!-- Area Label Vertikal Sisi Kanan -->
-                <div
-                  class="col-span-3 flex flex-col justify-between py-1 items-center border-l-2 border-dashed border-slate-200"
-                >
-                  <span
-                    class="wf-vertical-label text-slate-800 font-extrabold h-9"
-                    >NAVBAR</span
-                  >
-                  <span
-                    class="wf-vertical-label text-sky-600 font-extrabold h-[72px]"
-                    >TYPOGRAPHY</span
-                  >
-                  <span
-                    class="wf-vertical-label text-indigo-600 font-extrabold h-[60px]"
-                    >BOX MODEL</span
-                  >
-                  <span
-                    class="wf-vertical-label text-emerald-600 font-extrabold h-[52px]"
-                    >CSS GRID</span
-                  >
-                  <span
-                    class="wf-vertical-label text-amber-600 font-extrabold h-8"
-                    >HOVER</span
-                  >
-                  <span
-                    class="wf-vertical-label text-teal-600 font-extrabold h-[44px]"
-                    >MEDIA QUERY</span
-                  >
-                  <span
-                    class="wf-vertical-label text-slate-900 font-extrabold h-8"
-                    >FOOTER</span
-                  >
+                <div class="preview-card">
+                  <h3 class="font-bold text-sm text-slate-800 mb-1">
+                    Akses 24/7
+                  </h3>
+                  <p class="text-slate-500 text-xs">
+                    Katalog online dapat diakses kapan saja dan di mana saja.
+                  </p>
+                </div>
+                <div class="preview-card">
+                  <h3 class="font-bold text-sm text-slate-800 mb-1">
+                    Ruang Nyaman
+                  </h3>
+                  <p class="text-slate-500 text-xs">
+                    Fasilitas ruang baca ber-AC dan tenang untuk belajar.
+                  </p>
                 </div>
               </div>
             </div>
+
+            <!-- Page 2: Daftar Buku (Hidden Default) -->
+            <div id="page-buku" class="space-y-3 hidden">
+              <div class="preview-card">
+                <h2 class="text-lg font-bold text-slate-800 mb-2">
+                  Katalog Buku Terbaru
+                </h2>
+                <div class="overflow-x-auto">
+                  <table class="preview-table">
+                    <thead>
+                      <tr>
+                        <th class="w-12 text-center">No</th>
+                        <th class="w-20 text-center">Cover</th>
+                        <th>Judul Buku</th>
+                        <th>Penulis</th>
+                        <th class="text-center">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center">
+                          <img
+                            src="img/gambar_buku1.jpg"
+                            alt="Atomic Habits"
+                            class="w-12 h-16 object-cover mx-auto rounded shadow-sm border"
+                          />
+                        </td>
+                        <td class="font-semibold text-slate-800">
+                          Atomic Habits
+                        </td>
+                        <td class="text-slate-600">James Clear</td>
+                        <td class="text-center">
+                          <button class="preview-btn text-xs py-1 px-2">
+                            Pinjam
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">2</td>
+                        <td class="text-center">
+                          <img
+                            src="img/gambar_buku2.jpg"
+                            alt="Filosofi Teras"
+                            class="w-12 h-16 object-cover mx-auto rounded shadow-sm border"
+                          />
+                        </td>
+                        <td class="font-semibold text-slate-800">
+                          Filosofi Teras
+                        </td>
+                        <td class="text-slate-600">Henry Manampiring</td>
+                        <td class="text-center">
+                          <button class="preview-btn text-xs py-1 px-2">
+                            Pinjam
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">3</td>
+                        <td class="text-center">
+                          <img
+                            src="img/gambar_buku3.jpg"
+                            alt="Laskar Pelangi"
+                            class="w-12 h-16 object-cover mx-auto rounded shadow-sm border"
+                          />
+                        </td>
+                        <td class="font-semibold text-slate-800">
+                          Laskar Pelangi
+                        </td>
+                        <td class="text-slate-600">Andrea Hirata</td>
+                        <td class="text-center">
+                          <button class="preview-btn text-xs py-1 px-2">
+                            Pinjam
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 3: Form Kontak (Hidden Default) -->
+            <div id="page-kontak" class="space-y-3 hidden">
+              <div class="preview-card max-w-lg mx-auto">
+                <h2 class="text-lg font-bold text-slate-800 mb-1">
+                  Hubungi Layanan Perpustakaan
+                </h2>
+                <p class="text-slate-500 mb-4">
+                  Sampaikan pertanyaan atau saran Anda melalui formulir di bawah
+                  ini.
+                </p>
+                <form class="space-y-3" onsubmit="return false;">
+                  <div>
+                    <label class="block text-slate-700 font-medium mb-1"
+                      >Nama Lengkap:</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="Masukkan nama Anda..."
+                      class="preview-input"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-slate-700 font-medium mb-1"
+                      >Pertanyaan / Pesan:</label
+                    >
+                    <textarea
+                      rows="4"
+                      placeholder="Tuliskan pesan Anda..."
+                      class="preview-input"
+                    ></textarea>
+                  </div>
+                  <button type="submit" class="preview-btn w-full py-2">
+                    Kirim Pesan
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: KODE PROGRAM KOMPLIT -->
+      <section class="module-card p-6 sm:p-8 space-y-8">
+        <div class="flex items-center gap-3">
+          <span
+            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
+            >02</span
+          >
+          <h3 class="text-xl font-bold text-slate-800">
+            Kode Sumber Lengkap Proyek CSS
+          </h3>
+        </div>
+
+        <!-- File 1: style.css -->
+        <div class="space-y-2">
+          <h4 class="text-sm font-bold text-slate-700 flex items-center gap-2">
+            <i class="fa-brands fa-css3-alt text-blue-500"></i> 1. style.css
+            (Stylesheet Eksternal)
+          </h4>
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-css3-alt text-blue-500"></i> style.css
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-auto max-h-[350px]"
+            ><code><span class="text-slate-400">/* --- Reset & Base Styles --- */</span>
+<span class="text-indigo-600 font-semibold">*</span> {
+    <span class="text-amber-600">margin</span>: <span class="text-emerald-600">0</span>;
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">0</span>;
+    <span class="text-amber-600">box-sizing</span>: <span class="text-emerald-600">border-box</span>;
+}
+
+<span class="text-indigo-600 font-semibold">body</span> {
+    <span class="text-amber-600">font-family</span>: <span class="text-emerald-600">'Segoe UI', Tahoma, Geneva, Verdana, sans-serif</span>;
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#f1f5f9</span>;
+    <span class="text-amber-600">color</span>: <span class="text-emerald-600">#334155</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.container</span> {
+    <span class="text-amber-600">max-width</span>: <span class="text-emerald-600">1100px</span>;
+    <span class="text-amber-600">margin</span>: <span class="text-emerald-600">0 auto</span>;
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">1.5rem</span>;
+}
+
+<span class="text-slate-400">/* --- Header & Navigation --- */</span>
+<span class="text-indigo-600 font-semibold">.navbar</span> {
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#1e293b</span>;
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">1rem 2rem</span>;
+    <span class="text-amber-600">display</span>: <span class="text-emerald-600">flex</span>;
+    <span class="text-amber-600">justify-content</span>: <span class="text-emerald-600">space-between</span>;
+    <span class="text-amber-600">align-items</span>: <span class="text-emerald-600">center</span>;
+    <span class="text-amber-600">border-radius</span>: <span class="text-emerald-600">0.5rem</span>;
+    <span class="text-amber-600">margin-bottom</span>: <span class="text-emerald-600">1.5rem</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.brand</span> {
+    <span class="text-amber-600">color</span>: <span class="text-emerald-600">#ffffff</span>;
+    <span class="text-amber-600">font-weight</span>: <span class="text-emerald-600">bold</span>;
+    <span class="text-amber-600">font-size</span>: <span class="text-emerald-600">1.2rem</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.nav-links</span> {
+    <span class="text-amber-600">display</span>: <span class="text-emerald-600">flex</span>;
+    <span class="text-amber-600">gap</span>: <span class="text-emerald-600">1rem</span>;
+    <span class="text-amber-600">list-style</span>: <span class="text-emerald-600">none</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.nav-links a</span> {
+    <span class="text-amber-600">color</span>: <span class="text-emerald-600">#cbd5e1</span>;
+    <span class="text-amber-600">text-decoration</span>: <span class="text-emerald-600">none</span>;
+    <span class="text-amber-600">font-weight</span>: <span class="text-emerald-600">500</span>;
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">0.4rem 0.8rem</span>;
+    <span class="text-amber-600">border-radius</span>: <span class="text-emerald-600">0.25rem</span>;
+    <span class="text-amber-600">transition</span>: <span class="text-emerald-600">all 0.3s ease</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.nav-links a:hover, .nav-links a.active</span> {
+    <span class="text-amber-600">color</span>: <span class="text-emerald-600">#ffffff</span>;
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#0284c7</span>;
+}
+
+<span class="text-slate-400">/* --- Cards & Content Layout --- */</span>
+<span class="text-indigo-600 font-semibold">.card</span> {
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#ffffff</span>;
+    <span class="text-amber-600">border-radius</span>: <span class="text-emerald-600">0.5rem</span>;
+    <span class="text-amber-600">box-shadow</span>: <span class="text-emerald-600">0 4px 6px -1px rgba(0, 0, 0, 0.1)</span>;
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">1.5rem</span>;
+    <span class="text-amber-600">margin-bottom</span>: <span class="text-emerald-600">1.5rem</span>;
+    <span class="text-amber-600">border</span>: <span class="text-emerald-600">1px solid #e2e8f0</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.hero</span> {
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#0f172a</span>;
+    <span class="text-amber-600">color</span>: <span class="text-emerald-600">#ffffff</span>;
+    <span class="text-amber-600">border-radius</span>: <span class="text-emerald-600">0.75rem</span>;
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">2.5rem 2rem</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.grid-3</span> {
+    <span class="text-amber-600">display</span>: <span class="text-emerald-600">grid</span>;
+    <span class="text-amber-600">grid-template-columns</span>: <span class="text-emerald-600">repeat(auto-fit, minmax(250px, 1fr))</span>;
+    <span class="text-amber-600">gap</span>: <span class="text-emerald-600">1rem</span>;
+    <span class="text-amber-600">margin-top</span>: <span class="text-emerald-600">1rem</span>;
+}
+
+<span class="text-slate-400">/* --- Table Component --- */</span>
+<span class="text-indigo-600 font-semibold">.table-custom</span> {
+    <span class="text-amber-600">width</span>: <span class="text-emerald-600">100%</span>;
+    <span class="text-amber-600">border-collapse</span>: <span class="text-emerald-600">collapse</span>;
+    <span class="text-amber-600">margin-top</span>: <span class="text-emerald-600">1rem</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.table-custom th, .table-custom td</span> {
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">0.75rem 1rem</span>;
+    <span class="text-amber-600">border</span>: <span class="text-emerald-600">1px solid #e2e8f0</span>;
+    <span class="text-amber-600">text-align</span>: <span class="text-emerald-600">left</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.table-custom th</span> {
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#f8fafc</span>;
+    <span class="text-amber-600">color</span>: <span class="text-emerald-600">#0f172a</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.text-center</span> {
+    <span class="text-amber-600">text-align</span>: <span class="text-emerald-600">center</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.img-cover</span> {
+    <span class="text-amber-600">width</span>: <span class="text-emerald-600">48px</span>;
+    <span class="text-amber-600">height</span>: <span class="text-emerald-600">64px</span>;
+    <span class="text-amber-600">object-fit</span>: <span class="text-emerald-600">cover</span>;
+    <span class="text-amber-600">border-radius</span>: <span class="text-emerald-600">0.25rem</span>;
+    <span class="text-amber-600">border</span>: <span class="text-emerald-600">1px solid #cbd5e1</span>;
+}
+
+<span class="text-slate-400">/* --- Form Styling --- */</span>
+<span class="text-indigo-600 font-semibold">.form-group</span> {
+    <span class="text-amber-600">margin-bottom</span>: <span class="text-emerald-600">1rem</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.form-group label</span> {
+    <span class="text-amber-600">display</span>: <span class="text-emerald-600">block</span>;
+    <span class="text-amber-600">margin-bottom</span>: <span class="text-emerald-600">0.25rem</span>;
+    <span class="text-amber-600">font-weight</span>: <span class="text-emerald-600">500</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.form-control</span> {
+    <span class="text-amber-600">width</span>: <span class="text-emerald-600">100%</span>;
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">0.6rem 0.8rem</span>;
+    <span class="text-amber-600">border</span>: <span class="text-emerald-600">1px solid #cbd5e1</span>;
+    <span class="text-amber-600">border-radius</span>: <span class="text-emerald-600">0.375rem</span>;
+    <span class="text-amber-600">outline</span>: <span class="text-emerald-600">none</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.btn-primary</span> {
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#0284c7</span>;
+    <span class="text-amber-600">color</span>: <span class="text-emerald-600">white</span>;
+    <span class="text-amber-600">padding</span>: <span class="text-emerald-600">0.6rem 1.2rem</span>;
+    <span class="text-amber-600">border</span>: <span class="text-emerald-600">none</span>;
+    <span class="text-amber-600">border-radius</span>: <span class="text-emerald-600">0.375rem</span>;
+    <span class="text-amber-600">cursor</span>: <span class="text-emerald-600">pointer</span>;
+    <span class="text-amber-600">font-weight</span>: <span class="text-emerald-600">600</span>;
+}
+
+<span class="text-indigo-600 font-semibold">.btn-primary:hover</span> {
+    <span class="text-amber-600">background-color</span>: <span class="text-emerald-600">#0369a1</span>;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- File 2: index.html -->
+        <div class="space-y-2">
+          <h4 class="text-sm font-bold text-slate-700 flex items-center gap-2">
+            <i class="fa-brands fa-html5 text-orange-500"></i> 2. index.html
+            (Halaman Beranda)
+          </h4>
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> index.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-auto max-h-[350px]"
+            ><code><span class="text-slate-400">&lt;!DOCTYPE html&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;html</span> <span class="text-amber-600">lang</span>=<span class="text-emerald-600">"id"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;head&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">charset</span>=<span class="text-emerald-600">"UTF-8"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">name</span>=<span class="text-emerald-600">"viewport"</span> <span class="text-amber-600">content</span>=<span class="text-emerald-600">"width=device-width, initial-scale=1.0"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;title&gt;</span>Perpustakaan SMTI - Beranda<span class="text-indigo-600 font-semibold">&lt;/title&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;link</span> <span class="text-amber-600">rel</span>=<span class="text-emerald-600">"stylesheet"</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"style.css"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/head&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;body&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"container"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+        <span class="text-slate-400">&lt;!-- Navbar --&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;nav</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"navbar"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"brand"</span><span class="text-indigo-600 font-semibold">&gt;</span>Perpustakaan SMTI<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;ul</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"nav-links"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"index.html"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"active"</span><span class="text-indigo-600 font-semibold">&gt;</span>Beranda<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"buku.html"</span><span class="text-indigo-600 font-semibold">&gt;</span>Daftar Buku<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"kontak.html"</span><span class="text-indigo-600 font-semibold">&gt;</span>Kontak<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;/ul&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;/nav&gt;</span>
+
+        <span class="text-slate-400">&lt;!-- Hero Section --&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"card hero"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;h1&gt;</span>Selamat Datang di Perpustakaan Digital<span class="text-indigo-600 font-semibold">&lt;/h1&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>
+                Pusat literasi dan sumber belajar modern SMK SMTI Yogyakarta.
+                Temukan ribuan koleksi buku, jurnal teknis, dan referensi akademik.
+            <span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"buku.html"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn-primary"</span> <span class="text-amber-600">style</span>=<span class="text-emerald-600">"display: inline-block; margin-top: 1rem; text-decoration: none;"</span><span class="text-indigo-600 font-semibold">&gt;</span>Jelajahi Koleksi<span class="text-indigo-600 font-semibold">&lt;/a&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+
+        <span class="text-slate-400">&lt;!-- Features Grid --&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"grid-3"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"card"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;h3&gt;</span>Koleksi Lengkap<span class="text-indigo-600 font-semibold">&lt;/h3&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Ribuan buku cetak dan e-book berkualitas tinggi.<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"card"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;h3&gt;</span>Akses 24/7<span class="text-indigo-600 font-semibold">&lt;/h3&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Katalog online dapat diakses kapan saja dan di mana saja.<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"card"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;h3&gt;</span>Ruang Nyaman<span class="text-indigo-600 font-semibold">&lt;/h3&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;p&gt;</span>Fasilitas ruang baca ber-AC dan tenang untuk belajar.<span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/body&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/html&gt;</span></code></pre>
+          </div>
+        </div>
+
+        <!-- File 3: buku.html -->
+        <div class="space-y-2">
+          <h4 class="text-sm font-bold text-slate-700 flex items-center gap-2">
+            <i class="fa-brands fa-html5 text-orange-500"></i> 3. buku.html
+            (Halaman Daftar Buku)
+          </h4>
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> buku.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-auto max-h-[350px]"
+            ><code><span class="text-slate-400">&lt;!DOCTYPE html&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;html</span> <span class="text-amber-600">lang</span>=<span class="text-emerald-600">"id"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;head&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">charset</span>=<span class="text-emerald-600">"UTF-8"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">name</span>=<span class="text-emerald-600">"viewport"</span> <span class="text-amber-600">content</span>=<span class="text-emerald-600">"width=device-width, initial-scale=1.0"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;title&gt;</span>Daftar Buku - Perpustakaan SMTI<span class="text-indigo-600 font-semibold">&lt;/title&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;link</span> <span class="text-amber-600">rel</span>=<span class="text-emerald-600">"stylesheet"</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"style.css"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/head&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;body&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"container"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;nav</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"navbar"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"brand"</span><span class="text-indigo-600 font-semibold">&gt;</span>Perpustakaan SMTI<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;ul</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"nav-links"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"index.html"</span><span class="text-indigo-600 font-semibold">&gt;</span>Beranda<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"buku.html"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"active"</span><span class="text-indigo-600 font-semibold">&gt;</span>Daftar Buku<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"kontak.html"</span><span class="text-indigo-600 font-semibold">&gt;</span>Kontak<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;/ul&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;/nav&gt;</span>
+
+        <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"card"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;h2&gt;</span>Katalog Buku Terbaru<span class="text-indigo-600 font-semibold">&lt;/h2&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;table</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"table-custom"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;thead&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;tr&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;th</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span> <span class="text-amber-600">style</span>=<span class="text-emerald-600">"width: 50px;"</span><span class="text-indigo-600 font-semibold">&gt;</span>No<span class="text-indigo-600 font-semibold">&lt;/th&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;th</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span> <span class="text-amber-600">style</span>=<span class="text-emerald-600">"width: 80px;"</span><span class="text-indigo-600 font-semibold">&gt;</span>Cover<span class="text-indigo-600 font-semibold">&lt;/th&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;th&gt;</span>Judul Buku<span class="text-indigo-600 font-semibold">&lt;/th&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;th&gt;</span>Penulis<span class="text-indigo-600 font-semibold">&lt;/th&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;th</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span> <span class="text-amber-600">style</span>=<span class="text-emerald-600">"width: 100px;"</span><span class="text-indigo-600 font-semibold">&gt;</span>Aksi<span class="text-indigo-600 font-semibold">&lt;/th&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;/tr&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;/thead&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;tbody&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;tr&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;</span>1<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;&lt;img</span> <span class="text-amber-600">src</span>=<span class="text-emerald-600">"img/gambar_buku1.jpg"</span> <span class="text-amber-600">alt</span>=<span class="text-emerald-600">"Atomic Habits"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"img-cover"</span> <span class="text-indigo-600 font-semibold">/&gt;&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td&gt;&lt;strong&gt;</span>Atomic Habits<span class="text-indigo-600 font-semibold">&lt;/strong&gt;&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>James Clear<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;&lt;button</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn-primary"</span><span class="text-indigo-600 font-semibold">&gt;</span>Pinjam<span class="text-indigo-600 font-semibold">&lt;/button&gt;&lt;/td&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;/tr&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;tr&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;</span>2<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;&lt;img</span> <span class="text-amber-600">src</span>=<span class="text-emerald-600">"img/gambar_buku2.jpg"</span> <span class="text-amber-600">alt</span>=<span class="text-emerald-600">"Filosofi Teras"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"img-cover"</span> <span class="text-indigo-600 font-semibold">/&gt;&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td&gt;&lt;strong&gt;</span>Filosofi Teras<span class="text-indigo-600 font-semibold">&lt;/strong&gt;&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>Henry Manampiring<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;&lt;button</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn-primary"</span><span class="text-indigo-600 font-semibold">&gt;</span>Pinjam<span class="text-indigo-600 font-semibold">&lt;/button&gt;&lt;/td&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;/tr&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;tr&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;</span>3<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;&lt;img</span> <span class="text-amber-600">src</span>=<span class="text-emerald-600">"img/gambar_buku3.jpg"</span> <span class="text-amber-600">alt</span>=<span class="text-emerald-600">"Laskar Pelangi"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"img-cover"</span> <span class="text-indigo-600 font-semibold">/&gt;&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td&gt;&lt;strong&gt;</span>Laskar Pelangi<span class="text-indigo-600 font-semibold">&lt;/strong&gt;&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td&gt;</span>Andrea Hirata<span class="text-indigo-600 font-semibold">&lt;/td&gt;</span>
+                        <span class="text-indigo-600 font-semibold">&lt;td</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"text-center"</span><span class="text-indigo-600 font-semibold">&gt;&lt;button</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn-primary"</span><span class="text-indigo-600 font-semibold">&gt;</span>Pinjam<span class="text-indigo-600 font-semibold">&lt;/button&gt;&lt;/td&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;/tr&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;/tbody&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;/table&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/body&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/html&gt;</span></code></pre>
+          </div>
+        </div>
+
+        <!-- File 4: kontak.html -->
+        <div class="space-y-2">
+          <h4 class="text-sm font-bold text-slate-700 flex items-center gap-2">
+            <i class="fa-brands fa-html5 text-orange-500"></i> 4. kontak.html
+            (Halaman Form Kontak)
+          </h4>
+          <div class="code-window">
+            <div class="code-header">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="code-tab">
+                <i class="fa-brands fa-html5 text-orange-500"></i> kontak.html
+              </div>
+            </div>
+            <pre
+              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-auto max-h-[350px]"
+            ><code><span class="text-slate-400">&lt;!DOCTYPE html&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;html</span> <span class="text-amber-600">lang</span>=<span class="text-emerald-600">"id"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;head&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">charset</span>=<span class="text-emerald-600">"UTF-8"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;meta</span> <span class="text-amber-600">name</span>=<span class="text-emerald-600">"viewport"</span> <span class="text-amber-600">content</span>=<span class="text-emerald-600">"width=device-width, initial-scale=1.0"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;title&gt;</span>Kontak - Perpustakaan SMTI<span class="text-indigo-600 font-semibold">&lt;/title&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;link</span> <span class="text-amber-600">rel</span>=<span class="text-emerald-600">"stylesheet"</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"style.css"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/head&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;body&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"container"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;nav</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"navbar"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"brand"</span><span class="text-indigo-600 font-semibold">&gt;</span>Perpustakaan SMTI<span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;ul</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"nav-links"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"index.html"</span><span class="text-indigo-600 font-semibold">&gt;</span>Beranda<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"buku.html"</span><span class="text-indigo-600 font-semibold">&gt;</span>Daftar Buku<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;li&gt;&lt;a</span> <span class="text-amber-600">href</span>=<span class="text-emerald-600">"kontak.html"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"active"</span><span class="text-indigo-600 font-semibold">&gt;</span>Kontak<span class="text-indigo-600 font-semibold">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;/ul&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;/nav&gt;</span>
+
+        <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"card"</span> <span class="text-amber-600">style</span>=<span class="text-emerald-600">"max-width: 600px; margin: 0 auto;"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;h2&gt;</span>Hubungi Layanan Perpustakaan<span class="text-indigo-600 font-semibold">&lt;/h2&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;p</span> <span class="text-amber-600">style</span>=<span class="text-emerald-600">"color: #64748b; margin-bottom: 1rem; font-size: 0.9rem;"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                Sampaikan pertanyaan atau saran Anda melalui formulir di bawah ini.
+            <span class="text-indigo-600 font-semibold">&lt;/p&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;form&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"form-group"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;label&gt;</span>Nama Lengkap:<span class="text-indigo-600 font-semibold">&lt;/label&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;input</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"text"</span> <span class="text-amber-600">placeholder</span>=<span class="text-emerald-600">"Masukkan nama Anda..."</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"form-control"</span> <span class="text-indigo-600 font-semibold">/&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;div</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"form-group"</span><span class="text-indigo-600 font-semibold">&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;label&gt;</span>Pertanyaan / Pesan:<span class="text-indigo-600 font-semibold">&lt;/label&gt;</span>
+                    <span class="text-indigo-600 font-semibold">&lt;textarea</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"form-control"</span> <span class="text-amber-600">rows</span>=<span class="text-emerald-600">"4"</span> <span class="text-amber-600">placeholder</span>=<span class="text-emerald-600">"Tuliskan pesan Anda..."</span><span class="text-indigo-600 font-semibold">&gt;&lt;/textarea&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+                <span class="text-indigo-600 font-semibold">&lt;button</span> <span class="text-amber-600">type</span>=<span class="text-emerald-600">"submit"</span> <span class="text-amber-600">class</span>=<span class="text-emerald-600">"btn-primary"</span> <span class="text-amber-600">style</span>=<span class="text-emerald-600">"width: 100%;"</span><span class="text-indigo-600 font-semibold">&gt;</span>Kirim Pesan<span class="text-indigo-600 font-semibold">&lt;/button&gt;</span>
+            <span class="text-indigo-600 font-semibold">&lt;/form&gt;</span>
+        <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+    <span class="text-indigo-600 font-semibold">&lt;/div&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/body&gt;</span>
+<span class="text-indigo-600 font-semibold">&lt;/html&gt;</span></code></pre>
           </div>
         </div>
       </section>
@@ -497,12 +889,45 @@
           <i class="fa-solid fa-arrow-left"></i> Modul 3.4
         </a>
         <a
-          href="index.html"
+          href="3.6.html"
           class="text-xs font-semibold px-3.5 py-2 rounded-lg border text-white bg-indigo-600 hover:bg-indigo-700 transition flex items-center gap-1 shadow-2xs"
         >
-          Selesai <i class="fa-solid fa-arrow-right"></i>
+          Studi Kasus <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
     </main>
+
+    <!-- Script Tab Switching untuk Simulasi Browser -->
+    <script>
+      function switchTab(tabName) {
+        document.getElementById("page-beranda").classList.add("hidden");
+        document.getElementById("page-buku").classList.add("hidden");
+        document.getElementById("page-kontak").classList.add("hidden");
+
+        // Reset nav button active style
+        const navBeranda = document.getElementById("nav-beranda");
+        const navBuku = document.getElementById("nav-buku");
+        const navKontak = document.getElementById("nav-kontak");
+
+        [navBeranda, navBuku, navKontak].forEach((el) => {
+          el.className = "hover:text-white";
+        });
+
+        const addressBar = document.getElementById("browser-url");
+        if (tabName === "beranda") {
+          document.getElementById("page-beranda").classList.remove("hidden");
+          navBeranda.className = "bg-sky-600 text-white rounded px-2 py-1";
+          addressBar.textContent = "http://127.0.0.1:5500/index.html";
+        } else if (tabName === "buku") {
+          document.getElementById("page-buku").classList.remove("hidden");
+          navBuku.className = "bg-sky-600 text-white rounded px-2 py-1";
+          addressBar.textContent = "http://127.0.0.1:5500/buku.html";
+        } else if (tabName === "kontak") {
+          document.getElementById("page-kontak").classList.remove("hidden");
+          navKontak.className = "bg-sky-600 text-white rounded px-2 py-1";
+          addressBar.textContent = "http://127.0.0.1:5500/kontak.html";
+        }
+      }
+    </script>
   </body>
 </html>
