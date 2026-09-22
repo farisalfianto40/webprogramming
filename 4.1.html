@@ -18,12 +18,6 @@
         font-family: "Plus Jakarta Sans", sans-serif;
         background-color: #f8fafc;
         color: #0f172a;
-
-        /* Mencegah seleksi teks (Anti-Select/Copas) */
-        -webkit-user-select: none; /* Safari */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* IE 10+ / Edge */
-        user-select: none; /* Standard */
       }
 
       .code-font {
@@ -164,7 +158,7 @@
           </h2>
           <p class="text-slate-500 text-sm mt-1">
             Panduan dasar logika pemrograman web: Variabel, Tipe Data,
-            Kondisional (if/else), Perulangan (Loop), Fungsi, dan Objek.
+            Kondisional (if/else), dan Fungsi.
           </p>
         </div>
       </div>
@@ -347,95 +341,12 @@ console.log(<span class="text-emerald-600">"Status Lulus:"</span>, lulus);</code
         </div>
       </section>
 
-      <!-- Section 3: Loop (Perulangan) -->
+      <!-- Section 3: Function (Fungsi) -->
       <section class="module-card p-6 sm:p-8">
         <div class="flex items-center gap-3 mb-4">
           <span
             class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
             >03</span
-          >
-          <h3 class="text-xl font-bold text-slate-800">Perulangan (Loop)</h3>
-        </div>
-        <p class="text-slate-600 text-sm mb-6">
-          Digunakan untuk memproses sekumpulan data (array) secara otomatis.
-          Pada contoh ini, perulangan menampilkan seluruh daftar nama siswa satu
-          per satu.
-        </p>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="code-window">
-            <div class="code-header">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
-                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
-              </div>
-              <div class="code-tab">
-                <i class="fa-brands fa-js text-yellow-500"></i> perulangan.js
-              </div>
-            </div>
-            <pre
-              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
-            ><code><span class="text-indigo-600 font-semibold">const</span> <span class="text-amber-600">daftarSiswa</span> = [<span class="text-emerald-600">"Ahmad"</span>, <span class="text-emerald-600">"Budi"</span>, <span class="text-emerald-600">"Cici"</span>, <span class="text-emerald-600">"Deni"</span>];
-
-<span class="text-indigo-600 font-semibold">for</span> (<span class="text-indigo-600 font-semibold">let</span> <span class="text-amber-600">i</span> = <span class="text-emerald-600">0</span>; i &lt; daftarSiswa.length; i++) {
-    console.log(<span class="text-emerald-600">"Siswa: "</span> + daftarSiswa[i]);
-}</code></pre>
-          </div>
-
-          <div class="browser-window flex flex-col">
-            <div class="browser-header">
-              <div class="browser-dots">
-                <span class="browser-dot bg-rose-400"></span>
-                <span class="browser-dot bg-amber-400"></span>
-                <span class="browser-dot bg-emerald-400"></span>
-              </div>
-              <div class="browser-address-bar">
-                <i class="fa-solid fa-terminal text-slate-400"></i>
-                <span>Console Output</span>
-              </div>
-            </div>
-            <div
-              class="p-4 bg-slate-50 text-slate-800 code-font text-xs flex-grow space-y-1.5 border-t border-slate-200"
-            >
-              <p><span class="text-slate-400">&gt;</span> Siswa: Ahmad</p>
-              <p><span class="text-slate-400">&gt;</span> Siswa: Budi</p>
-              <p><span class="text-slate-400">&gt;</span> Siswa: Cici</p>
-              <p><span class="text-slate-400">&gt;</span> Siswa: Deni</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-6 space-y-3 text-sm text-slate-600 leading-relaxed">
-          <h4 class="font-bold text-slate-800 flex items-center gap-2">
-            <i class="fa-solid fa-book-open text-sky-600"></i> Penjelasan
-            Struktur Kode:
-          </h4>
-          <ul class="list-disc list-inside space-y-2 pt-1 text-slate-600">
-            <li>
-              <code class="code-font text-sky-600">let i = 0</code>: Indeks
-              array di JavaScript selalu dimulai dari angka 0.
-            </li>
-            <li>
-              <code class="code-font text-sky-600"
-                >i &lt; daftarSiswa.length</code
-              >: Perulangan berjalan sampai batas jumlah elemen array (4 item).
-            </li>
-            <li>
-              <code class="code-font text-sky-600">daftarSiswa[i]</code>:
-              Mengakses nama siswa berdasarkan posisi indeks perulangan saat
-              itu.
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Section 4: Function (Fungsi) -->
-      <section class="module-card p-6 sm:p-8">
-        <div class="flex items-center gap-3 mb-4">
-          <span
-            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
-            >04</span
           >
           <h3 class="text-xl font-bold text-slate-800">Function (Fungsi)</h3>
         </div>
@@ -505,7 +416,8 @@ console.log(<span class="text-emerald-600">"Hasil Pengurangan:"</span>, kurang(<
           <ul class="list-disc list-inside space-y-2 pt-1 text-slate-600">
             <li>
               <code class="code-font text-sky-600">a, b</code> adalah
-              **Parameter** (variabel penampung angka yang dimasukkan).
+              <strong>Parameter</strong> (variabel penampung angka yang
+              dimasukkan).
             </li>
             <li>
               Perintah
@@ -517,92 +429,14 @@ console.log(<span class="text-emerald-600">"Hasil Pengurangan:"</span>, kurang(<
         </div>
       </section>
 
-      <!-- Section 5: Object (Objek) -->
-      <section class="module-card p-6 sm:p-8">
-        <div class="flex items-center gap-3 mb-4">
-          <span
-            class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm"
-            >05</span
-          >
-          <h3 class="text-xl font-bold text-slate-800">Object (Objek)</h3>
-        </div>
-        <p class="text-slate-600 text-sm mb-6">
-          Objek digunakan untuk menyimpan beberapa data sekaligus yang
-          berhubungan dalam satu variabel.
-        </p>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="code-window">
-            <div class="code-header">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
-                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
-              </div>
-              <div class="code-tab">
-                <i class="fa-brands fa-js text-yellow-500"></i> objek.js
-              </div>
-            </div>
-            <pre
-              class="p-4 text-xs code-font text-slate-800 leading-relaxed bg-slate-50 whitespace-pre-wrap break-words overflow-x-hidden"
-            ><code><span class="text-indigo-600 font-semibold">const</span> <span class="text-amber-600">siswa</span> = {
-    nama: <span class="text-emerald-600">"Budi"</span>,
-    kelas: <span class="text-emerald-600">"XI TM"</span>,
-    umur: <span class="text-emerald-600">17</span>
-};
-
-<span class="text-slate-400">// Cara mengambil data di dalam objek</span>
-console.log(<span class="text-emerald-600">"Nama Siswa:"</span>, siswa.nama);
-console.log(<span class="text-emerald-600">"Kelas:"</span>, siswa.kelas);</code></pre>
-          </div>
-
-          <div class="browser-window flex flex-col">
-            <div class="browser-header">
-              <div class="browser-dots">
-                <span class="browser-dot bg-rose-400"></span>
-                <span class="browser-dot bg-amber-400"></span>
-                <span class="browser-dot bg-emerald-400"></span>
-              </div>
-              <div class="browser-address-bar">
-                <i class="fa-solid fa-terminal text-slate-400"></i>
-                <span>Console Output</span>
-              </div>
-            </div>
-            <div
-              class="p-4 bg-slate-50 text-slate-800 code-font text-xs flex-grow space-y-1.5 border-t border-slate-200"
-            >
-              <p><span class="text-slate-400">&gt;</span> Nama Siswa: Budi</p>
-              <p><span class="text-slate-400">&gt;</span> Kelas: XI TM</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-6 space-y-3 text-sm text-slate-600 leading-relaxed">
-          <h4 class="font-bold text-slate-800 flex items-center gap-2">
-            <i class="fa-solid fa-book-open text-sky-600"></i> Catatan Penting:
-          </h4>
-          <ul class="list-disc list-inside space-y-2 pt-1 text-slate-600">
-            <li>
-              Objek dibuka dan ditutup dengan kurung kurawa
-              <code class="code-font text-sky-600">{ }</code>.
-            </li>
-            <li>
-              Gunakan titik (<code class="code-font text-sky-600">.</code>)
-              untuk mengakses isi data di dalamnya (contoh:
-              <code class="code-font text-sky-600">siswa.nama</code>).
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Section 6: Latihan Gabungan sederhana -->
+      <!-- Section 4: Latihan Gabungan sederhana -->
       <section
         class="module-card p-6 sm:p-8 border-indigo-200 bg-gradient-to-b from-white to-slate-50/50"
       >
         <div class="flex items-center gap-3 mb-4">
           <span
             class="badge-number w-9 h-9 rounded-xl font-bold flex items-center justify-center text-sm bg-indigo-100 text-indigo-700"
-            >06</span
+            >04</span
           >
           <h3 class="text-xl font-bold text-slate-800">
             Studi Kasus: Cek Nilai Kelulusan
@@ -683,7 +517,7 @@ cekStatus(<span class="text-emerald-600">"Budi"</span>, <span class="text-emeral
               Saat
               <code class="code-font text-sky-600">cekStatus("Ahmad", 85)</code>
               dipanggil, nilai Ahmad (85) memenuhi syarat (&gt;= 75) sehingga
-              tercetak **LULUS**.
+              tercetak <strong>LULUS</strong>.
             </li>
           </ol>
         </div>
